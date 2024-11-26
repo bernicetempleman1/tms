@@ -45,8 +45,8 @@ afterAll(async () => {
   console.log("Database connection closed");
 });
 
-// Create
-describe("Project Model Test", () => {
+// Create Project Tests
+describe("Project Model Test: Create", () => {
   // test to auto-increment projectId
   it("should auto-increment projectId correctly", async () => {
     const projectData1 = {
@@ -73,3 +73,13 @@ describe("Project Model Test", () => {
     expect(savedProject2.projectId).toBe(2);
   });
 });
+
+// Read a Project by id Tests
+
+// Update Project Tests
+
+// Delete a Project Tests
+
+// List all Projects Tests
+
+// Search Projects Tests

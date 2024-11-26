@@ -38,7 +38,7 @@ afterAll(async () => {
   console.log("Database connection closed");
 });
 
-// Create a task
+// Create a task tests
 describe("Task Model Test: Create", () => {
 
   it("should create a task successfully", async () => {
@@ -157,7 +157,7 @@ describe("Task Model Test: Create", () => {
   });
 });
 
-// Update a task
+// Update a task Tests
 describe("Task Model Test: Update", () => {
   
   // short title
@@ -255,5 +255,12 @@ describe("Task Model Test: Update", () => {
     const updatedTask = await savedTask.save();
     expect(updatedTask.status).toBe("Completed");
   });
-
 });
+
+// Read a Task by id Tests
+
+// Delete a Task Tests
+
+// List all Tasks Tests
+
+// Search Tasks Tests
