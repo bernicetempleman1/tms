@@ -7,12 +7,6 @@ import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { debounceTime, map, of } from 'rxjs';
-
-@Component({
-  selector: 'app-project-delete',
-  standalone: true,
-
-
 /*
    _id: "650c1f1e1c9d440000a1b1c1",
     name: "Project Alpha",
@@ -24,7 +18,9 @@ import { debounceTime, map, of } from 'rxjs';
     projectId: "1",
 
   */
-
+@Component({
+  selector: 'app-project-menu',
+  standalone: true,
   imports: [RouterLink, CommonModule, ReactiveFormsModule],
 
   template: `
@@ -77,7 +73,6 @@ import { debounceTime, map, of } from 'rxjs';
             <th class="project-page__table-header">Name</th>
             <th class="project-page__table-header">Description</th>
             <th class="project-page__table-header">Date Created</th>
-            <th class="plant-page__table-header">Functions</th>
           </tr>
         </thead>
         <tbody class="project-page__table-body">
@@ -87,16 +82,7 @@ import { debounceTime, map, of } from 'rxjs';
             <td class="project-page__table-cell">{{ project.name }}</td>
             <td class="project-page__table-cell">{{ project.description }}</td>
             <td class="project-page__table-cell">{{ project.dateCreated }}</td>
-            <td
-              class="project-page__table-cell project-page__table-cell--functions"
-            >
-
-              <a
-                (click)="deleteProject(project.projectId)"
-                class="project-page__icon-link"
-                ><i class="fas fa-trash-alt"></i
-              ></a>
-            </td>
+            
           </tr>
           }
         </tbody>
@@ -201,7 +187,7 @@ margin-right: 0.5rem;
 })
 
 
-export class ProjectDeleteComponent {
+export class ProjectMenuComponent {
   projects: Project[] = [];
   allProjects: Project[] = [];
   serverMessage: string | null = null;
@@ -265,4 +251,3 @@ export class ProjectDeleteComponent {
     }, 3000);
   }
 }
-

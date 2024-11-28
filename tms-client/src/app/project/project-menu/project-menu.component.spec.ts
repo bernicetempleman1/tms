@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { ProjectDeleteComponent } from './project-delete.component';
+import { ProjectMenuComponent } from './project-menu.component';
 import { ProjectService } from '../project.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -7,20 +7,19 @@ import { Project } from '../project';
 import { of, throwError } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
-
-describe('ProjectDeleteComponent', () => {
-  let component: ProjectDeleteComponent;
-  let fixture: ComponentFixture<ProjectDeleteComponent>;
+describe('ProjectMenuComponent', () => {
+  let component: ProjectMenuComponent;
+  let fixture: ComponentFixture<ProjectMenuComponent>;
   let projectService: ProjectService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule, ProjectDeleteComponent], //Import ProjectMenuComponent
+      imports: [HttpClientTestingModule, RouterTestingModule, ProjectMenuComponent], //Import ProjectMenuComponent
       providers: [ProjectService]
 }).compileComponents();
 
 
-    fixture = TestBed.createComponent(ProjectDeleteComponent);
+    fixture = TestBed.createComponent(ProjectMenuComponent);
     component = fixture.componentInstance;
     projectService = TestBed.inject(ProjectService);
   });
