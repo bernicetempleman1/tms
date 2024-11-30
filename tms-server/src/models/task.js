@@ -19,6 +19,11 @@ let taskSchema = new Schema({
     maxlength: [100, "Task title cannot exceed 100 characters"],
     unique: true,
   },
+  description: {
+    type: String,
+    minlength: [3, "Task description must be at least 3 characters"],
+    maxlength: [100, "Task description cannot exceed 100 characters"],
+  },
   status: {
     type: String,
     enum: ["Pending", "In Progress", "Completed"],
@@ -41,7 +46,6 @@ let taskSchema = new Schema({
   },
   projectId: {
     type: Number,
-    required: [true, "Project ID is required"],
   },
 });
 

@@ -42,7 +42,7 @@ router.get("/:taskId", async (req, res, next) => {
 });
 
 // create task
-router.post("/:taskId", async (req, res, next) => {
+router.post("/:projectId", async (req, res, next) => {
   try {
     const valid = validateAddTask(req.body);
     if (!valid) {
@@ -50,10 +50,11 @@ router.post("/:taskId", async (req, res, next) => {
     }
     const payload = {
       ...req.body,
-      projectId: req.params.taskId,
+      projectId: req.params.projectId,
     };
     const task = new Task(payload);
     await task.save();
+
     res.send({
       message: "Task created successfully",
       id: task._id,

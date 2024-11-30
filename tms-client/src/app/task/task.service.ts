@@ -37,6 +37,7 @@ export class TaskService {
   }
 
   updateTask(taskId: string, updateTask: UpdateTaskDTO) {
+    console.log(updateTask);
     return this.http.patch<Task>(
       `${environment.apiBaseUrl}/api/tasks/${taskId}`,
       updateTask

@@ -13,8 +13,8 @@ const addProjectSchema = {
     properties: {
       name: { type: "string", minLength: 3, maxLength: 100 },
       description: { type: "string", maxLength: 500 },
-      
-      //The startDate of a project must be a valid date 
+
+      //The startDate of a project must be a valid date
       startDate: {
         type: "string",
         pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
@@ -33,17 +33,17 @@ const addProjectSchema = {
         pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
       },
     },
-    //A project must have a name and a start date 
+    //A project must have a name and a start date
     required: ["name", "startDate", "endDate"],
     additionalProperties: false,
   };
-  
+
   const updateProjectSchema = {
     type: "object",
     properties: {
       name: { type: "string", minLength: 3, maxLength: 100 },
       description: { type: "string", maxLength: 500 },
-      //The startDate of a project must be a valid date 
+      //The startDate of a project must be a valid date
       startDate: {
         type: "string",
         pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
@@ -54,7 +54,7 @@ const addProjectSchema = {
         pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
       },
     },
-    //A project must have a name and a start date 
+    //A project must have a name and a start date
     required: ["name", "startDate", "endDate"],
     additionalProperties: false,
   };
@@ -63,20 +63,21 @@ const addProjectSchema = {
     type: "object",
     properties: {
       title: { type: "string", minLength: 3, maxLength: 100 },
-      // The status of a task can only be one of the following: “Pending”, “In Progress”, “Completed” 
+      // The status of a task can only be one of the following: “Pending”, “In Progress”, “Completed”
+      description: { type: "string", minLength: 3, maxLength: 100 },
       status: { type: "string", enum: ["Pending", "In Progress", "Completed"] },
-      //The priority of a task can only be one of the following: “Low”, “Medium”, “High” 
+      //The priority of a task can only be one of the following: “Low”, “Medium”, “High”
       priority: { type: "string", enum: ["Low", "Medium", "High"] },
       dueDate: {
         type: "string",
         pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
       },
     },
-    //A task must have a title, status, and priority 
-    required: ["title", "status", "priority", "projectId"],
+    //A task must have a title, status, and priority
+    required: ["title", "status", "priority"],
     additionalProperties: false,
   };
-  
+
   const updateTaskSchema = {
     type: "object",
     properties: {
@@ -87,7 +88,7 @@ const addProjectSchema = {
     required: ["title", "type", "status", "projectId"],
     additionalProperties: false,
   };
-  
+
   module.exports = {
     addProjectSchema,
     updateProjectSchema,
