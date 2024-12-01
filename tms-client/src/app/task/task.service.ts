@@ -21,8 +21,8 @@ export class TaskService {
 
   //7.9
   /*
-  addPlant(plant: AddPlantDTO) {
-    return this.http.post<Plant>(`${environment.apiBaseUrl}/api/plants`, plant);
+  addtask(task: AddtaskDTO) {
+    return this.http.post<task>(`${environment.apiBaseUrl}/api/tasks`, task);
     }
 
     */

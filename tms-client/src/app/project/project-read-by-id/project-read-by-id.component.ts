@@ -195,6 +195,6 @@ export class ProjectReadByIdComponent {
 
 /*
 
-<th class="plant-page__table-header">Functions</th>
+<th class="task-page__table-header">Functions</th>
 
 */

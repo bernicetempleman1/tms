@@ -32,6 +32,9 @@ const addProjectSchema = {
         type: "string",
         pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
       },
+      projectId : {
+        type: "string",
+      }
     },
     //A project must have a name and a start date
     required: ["name", "startDate", "endDate"],
@@ -70,7 +73,7 @@ const addProjectSchema = {
       priority: { type: "string", enum: ["Low", "Medium", "High"] },
       dueDate: {
         type: "string",
-        pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
+       // pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
       },
     },
     //A task must have a title, status, and priority
@@ -85,7 +88,7 @@ const addProjectSchema = {
       status: { type: "string", enum: ["Pending", "In Progress", "Completed"] },
       priority: { type: "string", enum: ["Low", "Medium", "High"] },
     },
-    required: ["title", "type", "status", "projectId"],
+    required: ["title", "priority", "status"],
     additionalProperties: false,
   };
 

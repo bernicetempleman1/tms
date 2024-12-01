@@ -28,7 +28,7 @@ describe('TaskService', () => {
     httpMock.verify();
   });
 
-  it('should retrieve a list of plants from the API', () => {
+  it('should retrieve a list of tasks from the API', () => {
     const mockTasks: Task[] = [
       {
         _id: '1',

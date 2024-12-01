@@ -1,7 +1,7 @@
 export interface Task {
   _id: string;
   title: string;
-  description: string;
+  description?: string;
   status: string;
   priority: string;
   dueDate: string;
@@ -10,5 +10,5 @@ export interface Task {
   projectId: number;
 }
 
-export type AddTaskDTO = Omit<Task, '_id' |'projectId'|'dateCreated' | 'dateModified'>;
-export type UpdateTaskDTO = Omit<Task, '_id' | 'dateCreated' | 'dateModified'>;
+export type AddTaskDTO = Omit<Task, '_id' |'dateCreated' | 'dateModified'| 'projectId'>;
+export type UpdateTaskDTO = Omit<Task, '_id' | 'dateCreated' | 'dateModified' | 'dueDate'| 'description'| 'projectId'>;

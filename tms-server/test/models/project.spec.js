@@ -45,9 +45,9 @@ afterAll(async () => {
   console.log("Database connection closed");
 });
 
-// Create Project Tests
+// Create Project Tests : BT
 describe("Project Model Test: Create", () => {
-  // test to auto-increment projectId
+  // test to auto-increment projectId : BT
   it("should auto-increment projectId correctly", async () => {
     const projectData1 = {
       name: "Project Alpha",

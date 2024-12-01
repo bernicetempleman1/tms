@@ -38,7 +38,7 @@ afterAll(async () => {
   console.log("Database connection closed");
 });
 
-// Create a task tests
+// Create a task tests : BT
 describe("Task Model Test: Create", () => {
 
   it("should create a task successfully", async () => {
@@ -57,7 +57,7 @@ describe("Task Model Test: Create", () => {
     expect(savedTask.title).toBe(taskData.title);
   });
 
-  //A task must have a title, status, and priority
+  //A task must have a title, status, and priority : BT
   it("should fail to create a task without required fields", async () => {
     const taskData = {
       description: "Write the documentation for the project",
@@ -78,7 +78,7 @@ describe("Task Model Test: Create", () => {
     expect(err.errors["status"]).toBeDefined();
   });
 
-  // short title
+  // short title : BT
   it("should fail to create a task with a title shorter than 3 characters", async () => {
     const taskData = {
       title: "Co",
@@ -104,7 +104,7 @@ describe("Task Model Test: Create", () => {
     );
   });
 
-  // long title
+  // long title : BT
   it("should fail to create a task with a name longer than 100 characters", async () => {
     const taskData = {
       title: "R".repeat(101),
@@ -130,7 +130,7 @@ describe("Task Model Test: Create", () => {
     );
   });
 
-  // invalid status
+  // invalid status : BT
   it("should fail to create a task with an invalid status", async () => {
     const taskData = {
       title: "Complete project documentation",
@@ -157,10 +157,10 @@ describe("Task Model Test: Create", () => {
   });
 });
 
-// Update a task Tests
+// Update a task Tests : BT
 describe("Task Model Test: Update", () => {
-  
-  // short title
+
+  // short title : BT
   it("should fail to create a task with a title shorter than 3 characters", async () => {
     const taskData = {
       title: "Co",
@@ -186,7 +186,7 @@ describe("Task Model Test: Update", () => {
     );
   });
 
-  //long title
+  //long title : BT
   it("should fail to create a task with a name longer than 100 characters", async () => {
     const taskData = {
       title: "R".repeat(101),
@@ -212,7 +212,7 @@ describe("Task Model Test: Update", () => {
     );
   });
 
-  //invalid status
+  //invalid status : BT
   it("should fail to create a task with an invalid status", async () => {
     const taskData = {
       title: "Complete project documentation",
@@ -238,6 +238,7 @@ describe("Task Model Test: Update", () => {
     );
   });
 
+  // update status : BT
   it("should update a task's status successfully", async () => {
     const taskData = {
       title: "Complete project documentation",

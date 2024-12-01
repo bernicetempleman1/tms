@@ -17,7 +17,7 @@ const { addProjectSchema, updateProjectSchema } = require("../../schemas");
 const validateAddProject = ajv.compile(addProjectSchema);
 const validateUpdateProject = ajv.compile(updateProjectSchema);
 
-// get list of projects
+// get list of projects : BT
 router.get("/", async (req, res, next) => {
   try {
     const projects = await Project.find({});
@@ -28,7 +28,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-//read a project by id
+//read a project by id : BT
 router.get("/:projectId", async (req, res, next) => {
   try {
     const project = await Project.findOne({ projectId: req.params.projectId });
@@ -39,7 +39,7 @@ router.get("/:projectId", async (req, res, next) => {
   }
 });
 
-// delete a project
+// delete a project : BT
 router.delete("/:projectId", async (req, res, next) => {
   try {
     await Project.deleteOne({ projectId: req.params.projectId });

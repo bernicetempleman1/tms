@@ -18,7 +18,7 @@ const ajv = new Ajv();
 const validateAddTask = ajv.compile(addTaskSchema);
 const validateUpdateTask = ajv.compile(updateTaskSchema);
 
-// get lists of tasks
+// get lists of tasks : BT
 router.get("/", async (req, res, next) => {
   try {
     const tasks = await Task.find({});
@@ -29,7 +29,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// get task by id
+// get task by id : BT
 router.get("/:taskId", async (req, res, next) => {
   try {
     const task = await Task.findOne({ _id: req.params.taskId });
@@ -41,11 +41,15 @@ router.get("/:taskId", async (req, res, next) => {
   }
 });
 
-// create task
+// create task : BT
 router.post("/:projectId", async (req, res, next) => {
   try {
-    const valid = validateAddTask(req.body);
+    const  ttask  = req.body;
+    console.log('Task from the request body:', ttask);
+
+    const valid = validateAddTask(ttask);
     if (!valid) {
+      console.log('Not valid Task from the request body:', ttask);
       return next(createError(400, ajv.errorsText(validateAddTask.errors)));
     }
     const payload = {
@@ -65,10 +69,11 @@ router.post("/:projectId", async (req, res, next) => {
   }
 });
 
-// update task
+// update task : BT
 router.patch("/:taskId", async (req, res, next) => {
   try {
     const task = await Task.findOne({ _id: req.params.taskId });
+    console.log('Task from the request params:', task);
     const valid = validateUpdateTask(req.body);
     if (!valid) {
       return next(createError(400, ajv.errorsText(validateUpdateTask.errors)));
@@ -77,7 +82,7 @@ router.patch("/:taskId", async (req, res, next) => {
     await task.save();
     res.send({
       message: "Task updated successfully",
-      id: task._id,
+      id: task._id
     });
   } catch (err) {
     console.error(`Error while updating task: ${err}`);

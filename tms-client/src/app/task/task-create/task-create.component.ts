@@ -35,6 +35,7 @@ import { HttpClient } from '@angular/common/http';
               id="title"
               class="task-add-page__form-control"
               formControlName="title"
+              required
             />
           </div>
 
@@ -51,21 +52,6 @@ import { HttpClient } from '@angular/common/http';
           </div>
 
           <div class="task-add-page__form-group">
-            <label for="priority" class="task-add-page__form-label"
-              >Task Priority</label
-            >
-            <select
-              id="priority"
-              class="task-add-page__form-control"
-              formControlName="priority"
-            >
-              <option value="High">High</option>
-              <option value="Medium">Medium</option>
-              <option value="Low">Low</option>
-            </select>
-          </div>
-
-          <div class="task-add-page__form-group">
             <label for="status" class="task-add-page__form-label"
               >Task Status</label
             >
@@ -73,10 +59,27 @@ import { HttpClient } from '@angular/common/http';
               id="status"
               class="project-add-page__form-control"
               formControlName="status"
+              required
             >
               <option value="Pending">Pending</option>
               <option value="In Progress">In Progress</option>
               <option value="Completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="task-add-page__form-group">
+            <label for="priority" class="task-add-page__form-label"
+              >Task Priority</label
+            >
+            <select
+              id="priority"
+              class="task-add-page__form-control"
+              formControlName="priority"
+              required
+            >
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
             </select>
           </div>
 
@@ -88,6 +91,7 @@ import { HttpClient } from '@angular/common/http';
               id="projectId"
               class="task-add-page__form-control"
               formControlName="projectId"
+              required
             >
               @for (project of projects; track project) {
               <option [value]="project.projectId">{{ project.name }}</option>
@@ -103,6 +107,7 @@ import { HttpClient } from '@angular/common/http';
               id="dueDate"
               class="task-add-page__form-control"
               formControlName="dueDate"
+              required
             />
           </div>
 
@@ -220,14 +225,14 @@ export class TaskCreateComponent {
       console.log('task-create: add task');
       const projectId = this.taskForm.controls['projectId'].value;
       const dueDate = new Date(
-        this.taskForm.controls['dueDate'].value
-      ).toISOString();
+        this.taskForm.controls['dueDate'].value).toISOString();
       const newTask: AddTaskDTO = {
         title: this.taskForm.controls['title'].value,
         description: this.taskForm.controls['description'].value,
         status: this.taskForm.controls['status'].value,
         priority: this.taskForm.controls['priority'].value,
         dueDate: this.taskForm.controls['dueDate'].value,
+        
       };
       console.log('task-create: add task');
 

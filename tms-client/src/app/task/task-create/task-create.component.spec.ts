@@ -60,7 +60,7 @@ describe('TaskCreateComponent', () => {
     expect(component.taskForm.valid).toBeTrue();
   });
 
-  it('should call addPlant and navigate on successful form submission', () => {
+  it('should call addtask and navigate on successful form submission', () => {
     const addTaskDTO: AddTaskDTO = {
       title: 'Test Task',
       description: 'testing',
