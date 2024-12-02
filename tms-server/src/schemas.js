@@ -17,7 +17,7 @@ const addProjectSchema = {
       //The startDate of a project must be a valid date
       startDate: {
         type: "string",
-        pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
+       // pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
       },
       // verify valid endate
       endDate: {

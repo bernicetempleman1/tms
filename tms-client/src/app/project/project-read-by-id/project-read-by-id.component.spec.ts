@@ -1,3 +1,13 @@
+
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: project-read-by-id-component.spec.ts
+ * Description: Tests for Display a project
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
+
 import {
   ComponentFixture,
   TestBed,
@@ -44,6 +54,7 @@ describe('ProjectReadByIdComponent', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     fixture.detectChanges();
   });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -54,46 +65,14 @@ describe('ProjectReadByIdComponent', () => {
     expect(component.projectForm.valid).toBeTrue();
   });
 
-  it('should call updateProjecy and navigate on successful form submission', fakeAsync(() => {
-    const updateProjectDTO: UpdateProjectDTO = {
-      name: 'Test Garden',
-      description: 'Test Description',
-    };
-    const mockProject: Project = {
-      _id: '1',
-      projectId: 1,
-      name: 'Test Garden',
-      description: 'Test Description',
-      dateCreated: '2024-09-04T21:39:36.605Z',
-    };
-    spyOn(projectService, 'updateProject').and.returnValue(of(mockProject));
-    spyOn(router, 'navigate');
-    component.projectForm.controls['name'].setValue(updateProjectDTO.name);
-    component.projectForm.controls['description'].setValue(
-      updateProjectDTO.description
-    );
-    component.onSubmit();
-    tick();
-    expect(projectService.updateProject).toHaveBeenCalledWith(
-      updateProjectDTO,
-      component.projectId
-    );
-    expect(router.navigate).toHaveBeenCalledWith(['/projects']);
-  }));
+  it('should display title "Project Details"', () => {
+    //Assign DOM to variable
+    const compiled = fixture.nativeElement;
+    //Select HTML element
+    const title = compiled.querySelector('h1');
 
-  it('should handle error on form submission failure', fakeAsync(() => {
-    spyOn(projectService, 'updateProject').and.returnValue(
-      throwError('Error updating project')
-    );
-    spyOn(console, 'error');
-    component.projectForm.controls['name'].setValue('Test Garden');
-    component.projectForm.controls['description'].setValue('Test Description');
-    component.onSubmit();
-    tick();
-    expect(projectService.updateProject).toHaveBeenCalled();
-    expect(console.error).toHaveBeenCalledWith(
-      'Error updating project',
-      'Error updating project'
-    );
-  }));
+    //Check text content of h1 element
+    expect(title).toBeTruthy();
+    expect(title.textContent).toContain('Project Details');
+  });
 });

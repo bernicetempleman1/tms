@@ -1,3 +1,12 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: project.service.ts
+ * Description: project services
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
+
 import { Project } from './project';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';

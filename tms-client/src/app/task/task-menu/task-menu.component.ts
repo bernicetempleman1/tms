@@ -1,3 +1,11 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: task-menu-component.ts
+ * Description: Tests for Display a project
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
 // 183
 import { Component } from '@angular/core';
 import { TaskService } from '../task.service';
@@ -5,6 +13,7 @@ import { Task } from '../task';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-task-list',
@@ -39,7 +48,11 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
       </button>
 
       <button class="task-page__button" routerLink="/tasks/list">
-        List All Task
+        List All Tasks
+      </button>
+
+      <button class="task-page__button" routerLink="/tasks/search">
+        Search Tasks
       </button>
 
       @if (serverMessage) {
@@ -61,20 +74,15 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
         </thead>
         <tbody class="task-page__table-body">
           @for (task of tasks; track task) {
-          <tr
-
-          >
+          <tr>
             <td class="task-page__table-cell">{{ task._id }}</td>
             <td class="task-page__table-cell">{{ task.title }}</td>
-
           </tr>
           }
         </tbody>
       </table>
       } @else {
-      <p class="task-page__no-tasks">
-        No tasks found, consider adding one...
-      </p>
+      <p class="task-page__no-tasks">No tasks found, consider adding one...</p>
       }
     </div>
   `,
@@ -187,7 +195,6 @@ margin-bottom: 1rem;
 }
 `,
 })
-
 export class TaskMenuComponent {
   allTasks: Task[] = [];
   tasks: Task[] = [];
@@ -208,6 +215,10 @@ export class TaskMenuComponent {
         this.tasks = [];
       },
     });
+
+    this.txtSearchControl.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe((val) => this.filterTasks(val || ''));
   }
 
   filterTasks(title: string) {

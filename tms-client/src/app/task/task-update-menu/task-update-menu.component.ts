@@ -1,17 +1,26 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: task-update-component.ts
+ * Description: Task Update Menu
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
+
+
 // 183
 import { Component } from '@angular/core';
 import { TaskService } from '../task.service';
 import { Task } from '../task';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UpdateTaskDTO } from '../task';
-import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-task-update-menu',
   standalone: true,
-  imports: [RouterLink, CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [RouterLink, CommonModule, ReactiveFormsModule],
   template: `
     <div class="task-page">
       <h1 class="task-page__title">Task Update Menu</h1>
@@ -21,7 +30,7 @@ import { HttpClient } from '@angular/common/http';
           type="text"
           placeholder="Search tasks by title"
           [formControl]="txtSearchControl"
-          class="project-page__search"
+          class="task-page__search"
         />
       </div>
 
@@ -168,6 +177,11 @@ background-color: #6c757d;
 .task-page__highlight-info {
 text-align: center;
 color: #6c757d;
+margin-bottom: 1rem;
+}
+.task-page__search-container {
+display: flex;
+align-items: center;
 margin-bottom: 1rem;
 }
 `,

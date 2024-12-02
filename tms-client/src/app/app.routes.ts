@@ -1,3 +1,13 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: app.routes.ts
+ * Description: application routes
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
+
+
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 
@@ -8,6 +18,7 @@ import { ProjectListComponent } from './project/project-list/project-list.compon
 import { ProjectSearchComponent } from './project/project-search/project-search.component';
 import { ProjectCreateComponent } from './project/project-create/project-create.component';
 import { ProjectUpdateComponent } from './project/project-update/project-update.component';
+import { ProjectReadMenuComponent } from './project/project-read-menu/project-read-menu.component';
 
 import { TaskMenuComponent } from './task/task-menu/task-menu.component';
 import { TaskCreateComponent } from './task/task-create/task-create.component';
@@ -62,6 +73,10 @@ export const routes: Routes = [
   },
   {
     path: 'projects/read',
+    component: ProjectReadMenuComponent,
+  },
+  {
+    path: 'projects/read/:projectId',
     component: ProjectReadByIdComponent,
   },
   {

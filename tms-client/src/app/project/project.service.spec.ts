@@ -1,3 +1,13 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: project.service.spec.ts
+ * Description: project services
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
+
+
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ProjectService } from './project.service';

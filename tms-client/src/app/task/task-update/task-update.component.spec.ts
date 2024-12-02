@@ -1,3 +1,12 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: task-update-component.spec.ts
+ * Description: Tests to update task
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
+
 import {
   ComponentFixture,
   fakeAsync,

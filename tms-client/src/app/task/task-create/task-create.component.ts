@@ -1,3 +1,12 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: task-create-component.ts
+ * Description: Create a Task
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
+
 //166
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
@@ -98,6 +107,7 @@ import { HttpClient } from '@angular/common/http';
               }
             </select>
           </div>
+
           <div class="task-add-page__form-group">
             <label for="dueDate" class="task-add-page__form-label"
               >Due Date</label
@@ -232,7 +242,7 @@ export class TaskCreateComponent {
         status: this.taskForm.controls['status'].value,
         priority: this.taskForm.controls['priority'].value,
         dueDate: this.taskForm.controls['dueDate'].value,
-        
+
       };
       console.log('task-create: add task');
 

@@ -1,4 +1,11 @@
-//page 172
+/**
+ * Author: Bernice Templeman
+ * Date: 11 November 2024
+ * File: project-delete.component.ts
+ * Description: Delete a project
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
 import { Component } from '@angular/core';
 
 import { ProjectService } from '../project.service';
@@ -12,24 +19,11 @@ import { debounceTime, map, of } from 'rxjs';
   selector: 'app-project-delete',
   standalone: true,
 
-
-/*
-   _id: "650c1f1e1c9d440000a1b1c1",
-    name: "Project Alpha",
-    description: "Initial phase of the project",
-    startDate: "2021-01-01T00:00:00.000Z",
-    endDate: "2021-06-01T00:00:00.000Z",
-    dateCreated: "2021-01-01T00:00:00.000Z",
-    dateModified: "2021-01-05T00:00:00.000Z",
-    projectId: "1",
-
-  */
-
   imports: [RouterLink, CommonModule, ReactiveFormsModule],
 
   template: `
     <div class="project-page">
-      <h1 class="project-page__title">Project Menu</h1>
+      <h1 class="project-page__title">Delete Project</h1>
 
       <div class="project-page__search-container">
         <input

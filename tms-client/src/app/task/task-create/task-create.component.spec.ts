@@ -1,3 +1,13 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: task-create.component.spec.ts
+ * Description: Tests to Create a Task
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
+
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TaskCreateComponent } from './task-create.component';
 import { ReactiveFormsModule } from '@angular/forms';

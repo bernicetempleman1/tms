@@ -1,3 +1,12 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: app.component.spec.ts
+ * Description: application component
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
+
 import { Component, importProvidersFrom } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 

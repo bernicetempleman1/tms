@@ -1,3 +1,13 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: project.ts
+ * Description: Project interface
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
+
+
 import { ProjectDeleteComponent } from "./project-delete/project-delete.component";
 
 /*

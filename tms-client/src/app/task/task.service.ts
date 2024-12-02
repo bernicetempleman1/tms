@@ -1,3 +1,12 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: task.service.ts
+ * Description: Task services
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
@@ -17,15 +26,6 @@ export class TaskService {
   getTask(taskId: string) {
     return this.http.get<Task>(`${environment.apiBaseUrl}/api/tasks/${taskId}`);
   }
-
-
-  //7.9
-  /*
-  addtask(task: AddtaskDTO) {
-    return this.http.post<task>(`${environment.apiBaseUrl}/api/tasks`, task);
-    }
-
-    */
 
 //7.33
   addTask(projectId: number, task: AddTaskDTO) {

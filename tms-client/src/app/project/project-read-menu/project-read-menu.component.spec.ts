@@ -1,39 +1,39 @@
 /**
  * Author: Bernice Templeman
  * Date: 2 December 2024
- * File: task-menu-component.spec.ts
- * Description: Tests for Display Task Menu
+ * File: project-read-menu-component.spec.ts
+ * Description: Tests for Display a project
  *
  */
 //Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
 
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { TaskMenuComponent } from './task-menu.component';
-import { TaskService } from '../task.service';
+import { ProjectReadMenuComponent } from './project-read-menu.component';
+import { ProjectService } from '../project.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Task } from '../task';
+import { Project } from '../project';
 import { of, throwError } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
-describe('TaskMenuComponent', () => {
-  let component: TaskMenuComponent;
-  let fixture: ComponentFixture<TaskMenuComponent>;
-  let taskService: TaskService;
+describe('ProjectMenuComponent', () => {
+  let component: ProjectReadMenuComponent;
+  let fixture: ComponentFixture<ProjectReadMenuComponent>;
+  let projectService: ProjectService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
-        TaskMenuComponent,
+        ProjectReadMenuComponent,
       ], //Import ProjectMenuComponent
-      providers: [TaskService],
+      providers: [ProjectService],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TaskMenuComponent);
+    fixture = TestBed.createComponent(ProjectReadMenuComponent);
     component = fixture.componentInstance;
-    taskService = TestBed.inject(TaskService);
+    projectService = TestBed.inject(ProjectService);
   });
 
   it('should create', () => {

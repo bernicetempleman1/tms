@@ -1,8 +1,9 @@
+
 /**
  * Author: Bernice Templeman
  * Date: 11 November 2024
- * File: project-menu.component.ts
- * Description:  project menu
+ * File: project-read-menu.component.ts
+ * Description:  project read menu
  *
  */
 //Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
@@ -17,13 +18,13 @@ import { RouterLink } from '@angular/router';
 import { debounceTime, map, of } from 'rxjs';
 
 @Component({
-  selector: 'app-project-menu',
+  selector: 'app-project-read-menu',
   standalone: true,
   imports: [RouterLink, CommonModule, ReactiveFormsModule],
 
   template: `
     <div class="project-page">
-      <h1 class="project-page__title">Project Menu</h1>
+      <h1 class="project-page__title">Project Details Menu</h1>
 
       <div class="project-page__search-container">
         <input
@@ -33,30 +34,6 @@ import { debounceTime, map, of } from 'rxjs';
           class="project-page__search"
         />
       </div>
-
-      <button class="project-page__button" routerLink="/projects/create">
-        Add Project
-      </button>
-
-      <button class="project-page__button" routerLink="/projects/update">
-        Update Project
-      </button>
-
-      <button class="project-page__button" routerLink="/projects/delete">
-        Delete Project
-      </button>
-
-      <button class="project-page__button" routerLink="/projects/read">
-        Project Details
-      </button>
-
-      <button class="project-page__button" routerLink="/projects/list">
-        List All Projects
-      </button>
-
-      <button class="project-page__button" routerLink="/projects/search">
-        Search Projects
-      </button>
 
       @if (serverMessage) {
       <div
@@ -84,6 +61,8 @@ import { debounceTime, map, of } from 'rxjs';
             <td class="project-page__table-cell">{{ project.name }}</td>
             <td class="project-page__table-cell">{{ project.description }}</td>
             <td class="project-page__table-cell">{{ project.dateCreated }}</td>
+            <td class="project-page__table-cell project-page__table-cell--functions">
+<a routerLink="/projects/read/{{project.projectId}}" class="project-page__iconlink"><i class="fas fa-sticky-note"></i></a>
           </tr>
           }
         </tbody>
@@ -186,7 +165,7 @@ margin-right: 0.5rem;
 }
 `,
 })
-export class ProjectMenuComponent {
+export class ProjectReadMenuComponent {
   projects: Project[] = [];
   allProjects: Project[] = [];
   serverMessage: string | null = null;
@@ -250,3 +229,5 @@ export class ProjectMenuComponent {
     }, 3000);
   }
 }
+
+

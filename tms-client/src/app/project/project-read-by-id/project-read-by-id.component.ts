@@ -1,3 +1,11 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: project-read-by-id-component.ts
+ * Description: Display a project
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
 
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
@@ -18,8 +26,7 @@ import { Project, UpdateProjectDTO } from '../project';
     <div class="project-details-page">
       <h1 class="project-details-page__title">Project Details</h1>
       <h4 class="project-details-page__subtitle">
-        Explore the detailed information about your selected project, including
-        its location, projects, and maintenance schedule.
+        Explore the detailed information about your selected project.
       </h4>
       <div class="project-details-page__card">
         <form [formGroup]="projectForm" class="project-details-page__form">
@@ -32,6 +39,7 @@ import { Project, UpdateProjectDTO } from '../project';
               id="name"
               class="project-details-page__form-control"
               formControlName="name"
+              readonly
             />
           </div>
 
@@ -44,19 +52,15 @@ import { Project, UpdateProjectDTO } from '../project';
               rows="10"
               class="project-details-page__form-control"
               formControlName="description"
+              readonly
             ></textarea>
           </div>
-          <button
-            type="submit"
-            class="project-details-page__btn"
-            (click)="onSubmit()"
-          >
-            Save Changes
-          </button>
         </form>
       </div>
       <br />
-      <a class="project-details-page__link" routerLink="/projects">Return</a>
+      <a class="project-details-page__link" routerLink="/projects/read"
+        >Return</a
+      >
     </div>
   `,
   styles: `
@@ -171,30 +175,4 @@ export class ProjectReadByIdComponent {
       },
     });
   }
-  onSubmit() {
-    if (this.projectForm.valid) {
-      let l_project: UpdateProjectDTO = {
-        name: this.projectForm.controls['name'].value,
-        description: this.projectForm.controls['description'].value
-      };
-
-      console.log('Updating Project', l_project);
-
-      this.projectService.updateProject(l_project, this.projectId).subscribe({
-        next: (result: any) => {
-          console.log(`ProjectId: ${result.projectId} ${result.message}`);
-          this.router.navigate(['/projects']);
-        },
-        error: (error) => {
-          console.error('Error updating project', error);
-        },
-      });
-    }
-  }
 }
-
-/*
-
-<th class="task-page__table-header">Functions</th>
-
-*/

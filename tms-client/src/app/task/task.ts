@@ -1,3 +1,12 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 2 December 2024
+ * File: task.ts
+ * Description: Task interface
+ *
+ */
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
+
 export interface Task {
   _id: string;
   title: string;
@@ -11,4 +20,4 @@ export interface Task {
 }
 
 export type AddTaskDTO = Omit<Task, '_id' |'dateCreated' | 'dateModified'| 'projectId'>;
-export type UpdateTaskDTO = Omit<Task, '_id' | 'dateCreated' | 'dateModified' | 'dueDate'| 'description'| 'projectId'>;
+export type UpdateTaskDTO = Omit<Task, '_id' | 'dateCreated' | 'dateModified' | 'dueDate'|'projectId'>;
