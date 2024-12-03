@@ -7,7 +7,7 @@
  */
 const request = require('supertest');
 const express = require('express');
-const router = require('../../src/app');
+const router = require('../../../src/app');
 
 // Create an instance of the Express app
 const app = express();
