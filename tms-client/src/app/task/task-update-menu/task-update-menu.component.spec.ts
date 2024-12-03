@@ -37,5 +37,16 @@ describe('TaskUpdateMenuComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should display title "Task Update Menu"', () => {
+    //Assign DOM to variable
+    const compiled = fixture.nativeElement;
+    //Select HTML element
+    const title = compiled.querySelector('h1');
+
+    //Check text content of h1 element
+    expect(title).toBeTruthy();
+    expect(title.textContent).toContain('Task Update Menu');
+  });
+
 
 });

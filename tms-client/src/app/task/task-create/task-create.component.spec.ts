@@ -121,4 +121,17 @@ describe('TaskCreateComponent', () => {
       'Error creating task'
     );
   });
+
+  it('should display title "Add New task"', () => {
+    //Assign DOM to variable
+    const compiled = fixture.nativeElement;
+    //Select HTML element
+    const title = compiled.querySelector('h1');
+
+    //Check text content of h1 element
+    expect(title).toBeTruthy();
+    expect(title.textContent).toContain('Add New Task');
+  });
+
+
 });

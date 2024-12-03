@@ -62,4 +62,15 @@ describe('ProjectDeleteComponent', () => {
     expect(component.projects[0]._id).toBe('2');
   });
 
+  it('should display title "Delete Project"', () => {
+    //Assign DOM to variable
+    const compiled = fixture.nativeElement;
+    //Select HTML element
+    const title = compiled.querySelector('h1');
+
+    //Check text content of h1 element
+    expect(title).toBeTruthy();
+    expect(title.textContent).toContain('Delete Project');
+  });
+
 });
