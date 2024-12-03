@@ -58,6 +58,11 @@ import { debounceTime, map, of } from 'rxjs';
         Search Projects
       </button>
 
+
+      <button class="project-page__button" routerLink="/projects/search">
+        Search Projects
+      </button>
+
       @if (serverMessage) {
       <div
         [ngClass]="{
