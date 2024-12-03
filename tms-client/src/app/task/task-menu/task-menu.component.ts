@@ -21,7 +21,7 @@ import { debounceTime, map, of } from 'rxjs';
   imports: [RouterLink, CommonModule, ReactiveFormsModule, FormsModule],
   template: `
     <div class="task-page">
-      <h1 class="task-page__title">Task List</h1>
+      <h1 class="task-page__title">Task Menu</h1>
       <div class="task-page__search-container">
         <input
           type="text"

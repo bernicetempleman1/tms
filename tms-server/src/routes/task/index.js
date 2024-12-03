@@ -44,12 +44,8 @@ router.get("/:taskId", async (req, res, next) => {
 // create task : BT
 router.post("/:projectId", async (req, res, next) => {
   try {
-    const  ttask  = req.body;
-    console.log('Task from the request body:', ttask);
-
-    const valid = validateAddTask(ttask);
+    const valid = validateAddTask(req.body);
     if (!valid) {
-      console.log('Not valid Task from the request body:', ttask);
       return next(createError(400, ajv.errorsText(validateAddTask.errors)));
     }
     const payload = {
