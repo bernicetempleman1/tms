@@ -71,4 +71,13 @@ describe("POST /api/tasks/:projectId", () => {
     expect(response.status).toBe(200);
     expect(response.body.message).toBe("Task created successfully");
   });
+
+  it("should get all tasks", async () => {
+    Task.find.mockResolvedValue([{ title: "Rose" }]); // Mock the find method
+    const response = await request(app).get("/api/tasks");
+    expect(response.status).toBe(200);
+    expect(Array.isArray(response.body)).toBe(true);
+    expect(response.body[0].title).toBe("Rose");
+  });
+
 });
