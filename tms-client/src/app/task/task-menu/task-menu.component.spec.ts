@@ -50,4 +50,12 @@ describe('TaskMenuComponent', () => {
     expect(title).toBeTruthy();
     expect(title.textContent).toContain('Task Menu');
   });
+
+  it('should handle error when fetching tasks', () => {
+    spyOn(taskService, 'getTasks').and.returnValue(
+      throwError('Error fetching tasks')
+    );
+    fixture.detectChanges(); // Trigger the component's constructor
+    expect(component.tasks.length).toBe(0);
+  });
 });

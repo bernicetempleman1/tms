@@ -48,7 +48,7 @@ describe('ProjectService', () => {
   req.flush(dummyProjects);
 });
 
-it('should retrieve a single garden by ID', () => {
+it('should retrieve a single project by ID', () => {
   const dummyProject: Project = { _id: '1', projectId: 1, name: 'Garden 1', description: 'Description 1' };
   service.getProject(1).subscribe(project => {
     expect(project).toEqual(dummyProject);
@@ -70,7 +70,7 @@ it('should add a new project', () => {
   req.flush(newProject);
 });
 
-it('should update an existing garden', () => {
+it('should update an existing project', () => {
   const updateProjectDTO: UpdateProjectDTO = { name: 'Updated Garden', description: 'Updated Description' };
   const updatedProject: Project = { _id: '1', projectId: 1, name: 'Updated Garden', description: 'Updated Description' };
   service.updateProject(updateProjectDTO, 1).subscribe(project => {
@@ -81,7 +81,7 @@ it('should update an existing garden', () => {
   req.flush(updatedProject);
   });
 
-it('should delete a garden by ID', () => {
+it('should delete a project by ID', () => {
   service.deleteProject(1).subscribe(response => {
     expect(response).toEqual({});
   });
