@@ -85,4 +85,19 @@ router.patch("/:taskId", async (req, res, next) => {
   }
 });
 
+//Delete task API: LH
+router.delete('/:taskId', async (req, res, next) => {
+  try {
+    await Task.deleteOne({ _id: req.params.taskId});
+
+    res.send({
+      message: 'Task deleted successfully',
+      id: req.params.taskId
+    });
+  } catch(err) {
+    console.error(`Error while deleting task: ${err}`);
+    next(err);
+  }
+});
+
 module.exports = router;
