@@ -5,9 +5,7 @@
  * Description: Create a Task
  *
  */
-//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
-
-//166
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 166)
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
@@ -33,11 +31,15 @@ import { HttpClient } from '@angular/common/http';
       <h4 class="task-add-page__subtitle">
         Fill in the details to add a new task.
       </h4>
+      @if (errorMessage) {
+      <div class="message message--error">{{ errorMessage }}</div>
+      }
+
       <div class="task-add-page__card">
         <form [formGroup]="taskForm" class="task-add-page__form">
           <div class="task-add-page__form-group">
             <label for="title" class="task-add-page__form-label"
-              >Task Title</label
+              >Task Title<span class="required">*</span></label
             >
             <input
               type="text"
@@ -45,6 +47,7 @@ import { HttpClient } from '@angular/common/http';
               class="task-add-page__form-control"
               formControlName="title"
               required
+              placeholder="Enter the title of the task"
             />
           </div>
 
@@ -57,16 +60,17 @@ import { HttpClient } from '@angular/common/http';
               id="description"
               class="task-add-page__form-control"
               formControlName="description"
+              placeholder="Optional: Enter a description of the project"
             />
           </div>
 
           <div class="task-add-page__form-group">
             <label for="status" class="task-add-page__form-label"
-              >Task Status</label
+              >Task Status<span class="required">*</span></label
             >
             <select
               id="status"
-              class="project-add-page__form-control"
+              class="task-add-page__form-control"
               formControlName="status"
               required
             >
@@ -78,7 +82,7 @@ import { HttpClient } from '@angular/common/http';
 
           <div class="task-add-page__form-group">
             <label for="priority" class="task-add-page__form-label"
-              >Task Priority</label
+              >Task Priority<span class="required">*</span></label
             >
             <select
               id="priority"
@@ -94,7 +98,7 @@ import { HttpClient } from '@angular/common/http';
 
           <div class="task-add-page__form-group">
             <label for="projectId" class="task-add-page__form-label"
-              >Project</label
+              >Project<span class="required">*</span></label
             >
             <select
               id="projectId"
@@ -110,7 +114,7 @@ import { HttpClient } from '@angular/common/http';
 
           <div class="task-add-page__form-group">
             <label for="dueDate" class="task-add-page__form-label"
-              >Due Date</label
+              >Due Date<span class="required">*</span></label
             >
             <input
               type="date"
@@ -130,73 +134,75 @@ import { HttpClient } from '@angular/common/http';
       <a class="task-add-page__link" routerLink="/tasks">Return</a>
     </div>
   `,
-  styles: `
-.task-add-page {
-max-width: 80%;
-margin: 0 auto;
-padding: 20px;
-}
-.task-add-page__title {
-text-align: center;
-color: #563d7c;
-}
-.task-add-page__subtitle {
-text-align: center;
-color: #563d7c;
-font-size: 0.9rem;
-font-style: italic;
-margin-bottom: 20px;
-}
-.task-add-page__card {
-background: #fff;
-border-radius: 8px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-padding: 20px;
-margin-top: 20px;
-}
-.task-add-page__form {
-display: flex;
-flex-direction: column;
-}
-.task-add-page__form-group {
-margin-bottom: 15px;
-}
-.task-add-page__form-label {
-display: block;
-margin-bottom: 5px;
-font-weight: bold;
-}
-.task-add-page__form-control {
-width: 100%;
-padding: 8px;
-border: 1px solid #ccc;
-border-radius: 4px;
-box-sizing: border-box;
-}
-.task-add-page__btn {
-padding: 10px 15px;
-background-color: #563d7c;
-color: #fff;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-align-self: flex-start;
-}
-.task-add-page__btn:hover {
-background-color: #452d5e;
-}
-.task-add-page__link {
-color: #563d7c;
-text-decoration: none;
-display: block;
-}
-.task-add-page__link:hover {
-text-decoration: underline;
-}
-`,
+  styles: [
+    `
+      .task-add-page {
+        max-width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .task-add-page__title {
+        text-align: center;
+        color: #563d7c;
+      }
+      .task-add-page__subtitle {
+        text-align: center;
+        color: #563d7c;
+        font-size: 0.9rem;
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+      .task-add-page__card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+      }
+      .task-add-page__form {
+        display: flex;
+        flex-direction: column;
+      }
+      .task-add-page__form-group {
+        margin-bottom: 15px;
+      }
+      .task-add-page__form-label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .task-add-page__form-control {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .task-add-page__btn {
+        padding: 10px 15px;
+        background-color: #563d7c;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        align-self: flex-start;
+      }
+      .task-add-page__btn:hover {
+        background-color: #452d5e;
+      }
+      .task-add-page__link {
+        color: #563d7c;
+        text-decoration: none;
+        display: block;
+      }
+      .task-add-page__link:hover {
+        text-decoration: underline;
+      }
+    `,
+  ],
 })
 export class TaskCreateComponent {
-  //errorMessage: string;
+  errorMessage: string = '';
 
   projects: any[] = [];
 
@@ -207,10 +213,7 @@ export class TaskCreateComponent {
     ],
     description: [
       null,
-      Validators.compose([
-        Validators.required,
-        Validators.minLength(3),
-      ]),
+      Validators.compose([Validators.required, Validators.minLength(3)]),
     ],
     priority: [null, Validators.required],
     status: [null, Validators.required],
@@ -223,6 +226,7 @@ export class TaskCreateComponent {
     private taskService: TaskService,
     private projectService: ProjectService
   ) {
+    this.errorMessage = '';
     this.projectService.getProjects().subscribe({
       next: (projects: any) => {
         this.projects = projects;
@@ -231,18 +235,22 @@ export class TaskCreateComponent {
   }
 
   onSubmit() {
+    if (!this.taskForm.valid) {
+      this.errorMessage = 'Please fill in all required fields.';
+      return;
+    }
     if (this.taskForm.valid) {
       console.log('task-create: add task');
       const projectId = this.taskForm.controls['projectId'].value;
       const dueDate = new Date(
-        this.taskForm.controls['dueDate'].value).toISOString();
+        this.taskForm.controls['dueDate'].value
+      ).toISOString();
       const newTask: AddTaskDTO = {
         title: this.taskForm.controls['title'].value,
         description: this.taskForm.controls['description'].value,
         status: this.taskForm.controls['status'].value,
         priority: this.taskForm.controls['priority'].value,
         dueDate: this.taskForm.controls['dueDate'].value,
-
       };
       console.log('task-create: add task');
 
@@ -256,8 +264,7 @@ export class TaskCreateComponent {
         },
       });
     } else {
-      console.log('task-create: form not valid');
+      console.error('Error creating task. task-create: form not valid');
     }
   }
 }
-

@@ -34,28 +34,33 @@ import { environment } from '../../../environments/environment';
         Explore the detailed information about your selected task, including its
         priority and status.
       </h4>
+      @if (errorMessage) {
+      <div class="message message--error">{{ errorMessage }}</div>
+      }
       <div class="task-update-page__card">
         <form [formGroup]="taskForm" class="task-update-page__form">
-
           <div class="task-update-page__form-group">
             <label for="title" class="task-update-page__form-label"
-              >Task Title</label
+              >Task Title<span class="required">*</span></label
             >
             <input
               type="text"
               id="title"
               class="task-update-page__form-control"
               formControlName="title"
+              required
+              placeholder="Enter the title of the task"
             />
           </div>
 
           <div class="task-update-page__form-group">
             <label for="status" class="task-update-page__form-label"
-              >Task Status</label
+              >Task Status<span class="required">*</span></label
             >
             <select
               id="status"
               class="task-update-page__form-control"
+              required
               formControlName="status"
             >
               <option value="Pending">Pending</option>
@@ -66,11 +71,12 @@ import { environment } from '../../../environments/environment';
 
           <div class="task-update-page__form-group">
             <label for="priority" class="task-update-page__form-label"
-              >Task Priority</label
+              >Task Priority<span class="required">*</span></label
             >
             <select
               id="priority"
               class="task-update-page__form-control"
+              required
               formControlName="priority"
             >
               <option value="High">High</option>
@@ -79,11 +85,13 @@ import { environment } from '../../../environments/environment';
             </select>
           </div>
 
-          <button type="submit"
-          class="task-update-page__btn"
-          (click)="onSubmit()"
-          class="plant-details-page__btn"
-          value="Submit">
+          <button
+            type="submit"
+            class="task-update-page__btn"
+            (click)="onSubmit()"
+            class="plant-details-page__btn"
+            value="Submit"
+          >
             Save Changes
           </button>
         </form>
@@ -92,80 +100,80 @@ import { environment } from '../../../environments/environment';
       <a class="task-update-page__link" routerLink="/tasks">Return</a>
     </div>
   `,
-  styles: `
-.task-update-page {
-max-width: 80%;
-margin: 0 auto;
-padding: 20px;
-}
-.task-update-page__title {
-text-align: center;
-color: #563d7c;
-}
-.task-update-page__subtitle {
-text-align: center;
-color: #563d7c;
-font-size: 0.9rem;
-font-style: italic;
-margin-bottom: 20px;
-}
-.task-update-page__card {
-background: #fff;
-border-radius: 8px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-padding: 20px;
-margin-top: 20px;
-}
-.task-update-page__form {
-display: flex;
-flex-direction: column;
-}
-.task-update-page__form-group {
-  margin-bottom: 15px;
-}
-.task-update-page__form-label {
-display: block;
-margin-bottom: 5px;
-font-weight: bold;
-}
-.task-update-page__form-control {
-width: 100%;
-padding: 8px;
-border: 1px solid #ccc;
-border-radius: 4px;
-box-sizing: border-box;
-}
-.task-update-page__btn {
-padding: 10px 15px;
-background-color: #563d7c;
-color: #fff;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-align-self: flex-start;
-}
-.task-update-page__btn:hover {
-background-color: #452a63;
-}
-.task-update-page__link {
-color: #563d7c;
-text-decoration: none;
-display: block;
-}
-.task-update-page__link:hover {
-text-decoration: underline;
-}
-  `,
+  styles: [
+    `
+      .task-update-page {
+        max-width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .task-update-page__title {
+        text-align: center;
+        color: #563d7c;
+      }
+      .task-update-page__subtitle {
+        text-align: center;
+        color: #563d7c;
+        font-size: 0.9rem;
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+      .task-update-page__card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+      }
+      .task-update-page__form {
+        display: flex;
+        flex-direction: column;
+      }
+      .task-update-page__form-group {
+        margin-bottom: 15px;
+      }
+      .task-update-page__form-label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .task-update-page__form-control {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .task-update-page__btn {
+        padding: 10px 15px;
+        background-color: #563d7c;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        align-self: flex-start;
+      }
+      .task-update-page__btn:hover {
+        background-color: #452a63;
+      }
+      .task-update-page__link {
+        color: #563d7c;
+        text-decoration: none;
+        display: block;
+      }
+      .task-update-page__link:hover {
+        text-decoration: underline;
+      }
+    `,
+  ],
 })
-
 export class TaskUpdateComponent {
- // _id: string;
+  // _id: string;
   taskId: string;
   task: Task;
   errorMessage: string;
 
   taskForm: FormGroup = this.fb.group({
-
     title: [
       null,
       Validators.compose([Validators.required, Validators.minLength(3)]),
@@ -173,7 +181,6 @@ export class TaskUpdateComponent {
 
     priority: [null, Validators.required],
     status: [null, Validators.required],
-
   });
 
   constructor(
@@ -198,14 +205,17 @@ export class TaskUpdateComponent {
         this.taskForm.setValue({
           title: task.title,
           status: task.status,
-          priority: task.priority
-
+          priority: task.priority,
         });
-      }
+      },
     });
   }
 
   onSubmit() {
+    if (!this.taskForm.valid) {
+      this.errorMessage = 'Please fill in all required fields.';
+      return;
+    }
     console.log('task-update: submit');
     if (this.taskForm.valid) {
       console.log('task-create: valid');
@@ -224,7 +234,7 @@ export class TaskUpdateComponent {
         },
         error: (err: any) => {
           console.error('Error updating task', err);
-        }
+        },
       });
     }
   }

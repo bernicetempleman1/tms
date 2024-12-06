@@ -59,9 +59,26 @@ describe('ProjectReadByIdComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should create the component and initialize the form', () => {
+    expect(component).toBeTruthy();
+    expect(component.projectForm).toBeTruthy();
+    expect(component.projectForm.controls['projectId']).toBeTruthy();
+    expect(component.projectForm.controls['name']).toBeTruthy();
+    expect(component.projectForm.controls['description']).toBeTruthy();
+    expect(component.projectForm.controls['startDate']).toBeTruthy();
+    expect(component.projectForm.controls['endDate']).toBeTruthy();
+    expect(component.projectForm.controls['dateCreated']).toBeTruthy();
+    expect(component.projectForm.controls['dateModified']).toBeTruthy();
+  });
+
   it('should have a valid form when all fields are filled correctly', () => {
+    component.projectForm.controls['projectId'].setValue(1);
     component.projectForm.controls['name'].setValue('Test Garden');
     component.projectForm.controls['description'].setValue('Test Description');
+    component.projectForm.controls['startDate'].setValue('2021-01-01T00:00:00.000Z');
+    component.projectForm.controls['endDate'].setValue('2021-06-15T00:00:00.000Z');
+    component.projectForm.controls['dateCreated'].setValue('2020-12-20T00:00:00.000Z');
+    component.projectForm.controls['dateModified'].setValue('2021-01-02T00:00:00.000Z');
     expect(component.projectForm.valid).toBeTrue();
   });
 
