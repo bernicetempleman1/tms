@@ -31,6 +31,19 @@ import { Project, UpdateProjectDTO } from '../project';
       <div class="project-details-page__card">
         <form [formGroup]="projectForm" class="project-details-page__form">
           <div class="project-details-page__form-group">
+            <label for="projectId" class="project-details-page__form-label"
+              >Project Id</label
+            >
+            <input
+              type="number"
+              id="projectId"
+              class="project-details-page__form-control"
+              formControlName="projectId"
+              readonly
+            />
+          </div>
+
+          <div class="project-details-page__form-group">
             <label for="name" class="project-details-page__form-label"
               >Project Name</label
             >
@@ -55,6 +68,59 @@ import { Project, UpdateProjectDTO } from '../project';
               readonly
             ></textarea>
           </div>
+
+          <div class="project-details-page__form-group">
+            <label for="startDate" class="project-details-page__form-label"
+              >Start Date</label
+            >
+            <input
+              type="text"
+              id="startDate"
+              class="project-details-page__form-control"
+              formControlName="startDate"
+              readonly
+            />
+          </div>
+
+          <div class="project-details-page__form-group">
+            <label for="endDate" class="project-details-page__form-label"
+              >End Date</label
+            >
+            <input
+              type="text"
+              id="endDate"
+              class="project-details-page__form-control"
+              formControlName="endDate"
+              readonly
+            />
+          </div>
+
+          <div class="project-details-page__form-group">
+            <label for="dateCreated" class="project-details-page__form-label"
+              >Date Created</label
+            >
+            <input
+              type="text"
+              id="dateCreated"
+              class="project-details-page__form-control"
+              formControlName="dateCreated"
+              readonly
+            />
+          </div>
+
+          <div class="project-details-page__form-group">
+            <label for="dateModified" class="project-details-page__form-label"
+              >Date Modified</label
+            >
+            <input
+              type="text"
+              id="dateModified"
+              class="project-details-page__form-control"
+              formControlName="dateModified"
+              readonly
+            />
+          </div>
+
         </form>
       </div>
       <br />
@@ -63,75 +129,81 @@ import { Project, UpdateProjectDTO } from '../project';
       >
     </div>
   `,
-  styles: `
-  .project-details-page {
-  max-width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  }
-  .project-details-page__title {
-  text-align: center;
-  color: #563d7c;
-  }
-  .project-details-page__subtitle {
-    text-align: center;
-color: #563d7c;
-font-size: .9rem;
-font-style: italic;
-margin-bottom: 20px;
-}
-.project-details-page__card {
-background: #fff;
-border-radius: 8px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-padding: 20px;
-margin-top: 20px;
-}
-.project-details-page__form {
-display: flex;
-flex-direction: column;
-}
-.project-details-page__form-group {
-margin-bottom: 15px;
-}
-.project-details-page__form-label {
-display: block;
-margin-bottom: 5px;
-font-weight: bold;
-}
-.project-details-page__form-control {
-width: 100%;
-padding: 8px;
-border: 1px solid #ccc;
-border-radius: 4px;
-}
-.project-details-page__btn {
-padding: 10px 15px;
-background-color: #563d7c;
-color: #fff;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-align-self: flex-start;
-}
-.project-details-page__btn:hover {
-background-color: #452a63;
-}
-.project-details-page__link {
-color: #563d7c;
-text-decoration: none;
-display: block;
-}
-.project-details-page__link:hover {
-text-decoration: underline;
-}
-`,
+  styles: [
+    `
+      .project-details-page {
+        max-width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .project-details-page__title {
+        text-align: center;
+        color: #563d7c;
+      }
+      .project-details-page__subtitle {
+        text-align: center;
+        color: #563d7c;
+        font-size: 0.9rem;
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+      .project-details-page__card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+      }
+      .project-details-page__form {
+        display: flex;
+        flex-direction: column;
+      }
+      .project-details-page__form-group {
+        margin-bottom: 15px;
+      }
+      .project-details-page__form-label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .project-details-page__form-control {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .project-details-page__btn {
+        padding: 10px 15px;
+        background-color: #563d7c;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        align-self: flex-start;
+      }
+      .project-details-page__btn:hover {
+        background-color: #452a63;
+      }
+      .project-details-page__link {
+        color: #563d7c;
+        text-decoration: none;
+        display: block;
+      }
+      .project-details-page__link:hover {
+        text-decoration: underline;
+      }
+    `,
+  ],
 })
 export class ProjectReadByIdComponent {
   projectId: number;
   project: Project;
 
   projectForm: FormGroup = this.fb.group({
+    projectId: [
+      null,
+      Validators.compose([Validators.required]),
+    ],
     name: [
       null,
       Validators.compose([Validators.required, Validators.minLength(3)]),
@@ -139,6 +211,22 @@ export class ProjectReadByIdComponent {
     description: [
       null,
       Validators.compose([Validators.required, Validators.minLength(10)]),
+    ],
+    startDate: [
+      null,
+      Validators.compose([Validators.required]),
+    ],
+    endDate: [
+      null,
+      Validators.compose([Validators.required]),
+    ],
+    dateCreated: [
+      null,
+      Validators.compose([Validators.required]),
+    ],
+    dateModified: [
+      null,
+      Validators.compose([Validators.required]),
     ],
   });
   constructor(
@@ -168,10 +256,15 @@ export class ProjectReadByIdComponent {
         console.error('Error fetching project details', error);
       },
       complete: () => {
+        this.projectForm.controls['projectId'].setValue(this.project.projectId);
         this.projectForm.controls['name'].setValue(this.project.name);
         this.projectForm.controls['description'].setValue(
           this.project.description
         );
+        this.projectForm.controls['startDate'].setValue(this.project.startDate);
+        this.projectForm.controls['endDate'].setValue(this.project.endDate);
+        this.projectForm.controls['dateCreated'].setValue(this.project.dateCreated);
+        this.projectForm.controls['dateModified'].setValue(this.project.dateModified);
       },
     });
   }
