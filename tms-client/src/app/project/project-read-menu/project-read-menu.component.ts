@@ -52,6 +52,7 @@ import { debounceTime, map, of } from 'rxjs';
             <th class="project-page__table-header">Name</th>
             <th class="project-page__table-header">Description</th>
             <th class="project-page__table-header">Date Created</th>
+            <th class="project-page__table-header">Read</th>
           </tr>
         </thead>
         <tbody class="project-page__table-body">
