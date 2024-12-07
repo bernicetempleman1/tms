@@ -31,7 +31,7 @@ import { environment } from '../../../environments/environment';
     <div class="task-update-page">
       <h1 class="task-update-page__title">Task Update</h1>
       <h4 class="task-update-page__subtitle">
-        Explore the detailed information about your selected task, including its
+        Update information about your selected task, including its
         priority and status.
       </h4>
       @if (errorMessage) {
@@ -40,7 +40,10 @@ import { environment } from '../../../environments/environment';
       <div class="task-update-page__card">
         <form [formGroup]="taskForm" class="task-update-page__form">
           <div class="task-update-page__form-group">
-            <label for="title" class="task-update-page__form-label"
+            <label
+              for="title"
+              class="task-update-page__form-label"
+              title="Must be 3 or more characters"
               >Task Title<span class="required">*</span></label
             >
             <input
@@ -54,7 +57,10 @@ import { environment } from '../../../environments/environment';
           </div>
 
           <div class="task-update-page__form-group">
-            <label for="status" class="task-update-page__form-label"
+            <label
+              for="status"
+              class="task-update-page__form-label"
+              title="Select a Status"
               >Task Status<span class="required">*</span></label
             >
             <select
@@ -70,7 +76,10 @@ import { environment } from '../../../environments/environment';
           </div>
 
           <div class="task-update-page__form-group">
-            <label for="priority" class="task-update-page__form-label"
+            <label
+              for="priority"
+              class="task-update-page__form-label"
+              title="Select a priority"
               >Task Priority<span class="required">*</span></label
             >
             <select
