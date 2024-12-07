@@ -21,6 +21,8 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
           <h2 class="app__side-menu-title">{{ title }}</h2>
         </div>
 
+        <a class="app__side-menu-link" routerLink="/">Home</a>
+
         <div
           class="app__side-menu-section"
           (click)="toggleSection($event, 'taskManagement')"
@@ -77,7 +79,26 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
           </div>
           }
         </div>
-        <a class="app__side-menu-link" routerLink="/">Dashboard</a>
+
+        <div
+          class="app__side-menu-section"
+          (click)="toggleSection($event, 'projectReports')"
+        >
+          <div class="app__side-menu-link">Project Reports</div>
+
+          @if (sections.projectReports) {
+          <div class="app__side-menu-sub-links">
+            @for (link of projectReports; track link) {
+            <a
+              class="app__side-menu-link app__side-menu-sub-link"
+              [routerLink]="link.url"
+              >{{ link.name }}</a
+            >
+            }
+          </div>
+          }
+        </div>
+
         <a class="app__side-menu-link" routerLink="/support">Support</a>
         <a class="app__side-menu-link" routerLink="/faq">FAQ</a>
       </nav>
@@ -253,14 +274,14 @@ export class AppComponent {
 
   // Array to hold the sales reports links in the side menu. These links are visible to all users
   taskReports = [
-    { name: 'Tasks by Priority', url: '/reports/sales/sales-by-region' },
+    { name: 'Tasks by Priority', url: '/reports/tasks/tasks-by-priority' },
     // Add more reports as needed
   ];
 
   projectReports = [
     {
-      name: 'Call Duration by Date Range',
-      url: '/reports/agent-performance/call-duration-by-date-range',
+      name: 'Projects by End Date',
+      url: '/reports/projects/projects-by-end-date',
     },
     // Add more reports as needed
   ];
