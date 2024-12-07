@@ -15,11 +15,12 @@ import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { debounceTime, map, of } from 'rxjs';
+import { HighlightRecentDirective } from '../highlight-recent.directive';
 
 @Component({
   selector: 'app-project-menu',
   standalone: true,
-  imports: [RouterLink, CommonModule, ReactiveFormsModule],
+  imports: [RouterLink, CommonModule, ReactiveFormsModule, HighlightRecentDirective],
 
   template: `
     <div class="project-page">
@@ -33,6 +34,13 @@ import { debounceTime, map, of } from 'rxjs';
           class="project-page__search"
         />
       </div>
+
+      <div class="project-page__highlight-info">
+        <p>
+          Rows highlighted in green indicate projects that were created within the
+          last 30 days.
+        </p>
+</div>
 
       @if (serverMessage) {
       <div
@@ -55,7 +63,7 @@ import { debounceTime, map, of } from 'rxjs';
         </thead>
         <tbody class="project-page__table-body">
           @for (project of projects; track project) {
-          <tr class="project-page__table-row">
+          <tr class="project-page__table-row" [appHighlightRecent]="project.dateCreated ?? ''">
             <td class="project-page__table-cell">{{ project.projectId }}</td>
             <td class="project-page__table-cell">{{ project.name }}</td>
             <td class="project-page__table-cell">{{ project.description }}</td>

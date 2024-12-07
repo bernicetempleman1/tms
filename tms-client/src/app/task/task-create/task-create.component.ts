@@ -53,14 +53,15 @@ import { HttpClient } from '@angular/common/http';
 
           <div class="task-add-page__form-group">
             <label for="description" class="task-add-page__form-label"
-              >Description</label
+              >Description<span class="required">*</span></label
             >
             <input
               type="text"
               id="description"
               class="task-add-page__form-control"
               formControlName="description"
-              placeholder="Optional: Enter a description of the project"
+              placeholder="Enter a description of the project"
+              required
             />
           </div>
 

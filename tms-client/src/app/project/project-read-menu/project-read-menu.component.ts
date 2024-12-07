@@ -56,6 +56,7 @@ import { debounceTime, map, of } from 'rxjs';
         </thead>
         <tbody class="project-page__table-body">
           @for (project of projects; track project) {
+
           <tr class="project-page__table-row">
             <td class="project-page__table-cell">{{ project.projectId }}</td>
             <td class="project-page__table-cell">{{ project.name }}</td>
