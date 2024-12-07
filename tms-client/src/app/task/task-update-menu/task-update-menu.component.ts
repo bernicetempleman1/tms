@@ -49,6 +49,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
           <tr class="task-page__table-row">
             <th class="task-page__table-header">Task ID</th>
             <th class="task-page__table-header">Title</th>
+            <th class="task-page__table-header">Update</th>
           </tr>
         </thead>
         <tbody class="task-page__table-body">
