@@ -14,46 +14,36 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, map, of } from 'rxjs';
+import { HighlightRecentDirective } from '../highlight-recent.directive';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [RouterLink, CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    RouterLink,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HighlightRecentDirective,
+  ],
   template: `
     <div class="task-page">
       <h1 class="task-page__title">Task Menu</h1>
-      <div class="task-page__search-container">
+      <div class="task-page__filter-container">
         <input
           type="text"
           placeholder="Search tasks by title"
           [formControl]="txtSearchControl"
-          class="project-page__search"
+          class="task-page__filter"
         />
       </div>
 
-      <button class="task-page__button" routerLink="/tasks/create">
-        Add Task
-      </button>
-
-      <button class="task-page__button" routerLink="/tasks/update">
-        Update Task
-      </button>
-
-      <button class="task-page__button" routerLink="/tasks/delete">
-        Delete Task
-      </button>
-
-      <button class="task-page__button" routerLink="/tasks/read">
-        Task Details
-      </button>
-
-      <button class="task-page__button" routerLink="/tasks/list">
-        List All Tasks
-      </button>
-
-      <button class="task-page__button" routerLink="/tasks/search">
-        Search Tasks
-      </button>
+      <div class="task-page__highlight-info">
+        <p>
+          Rows highlighted in green indicate tasks that were created within the
+          last 30 days.
+        </p>
+      </div>
 
       @if (serverMessage) {
       <div
@@ -67,16 +57,19 @@ import { debounceTime, map, of } from 'rxjs';
       } @if (tasks && tasks.length > 0) {
       <table class="task-page__table">
         <thead class="task-page__table-head">
-          <tr class="task-page__table-row">
+        <tr class="task-page__table-row">
             <th class="task-page__table-header">Task ID</th>
             <th class="task-page__table-header">Title</th>
+            <th class="task-page__table-header">Date</th>
           </tr>
         </thead>
         <tbody class="task-page__table-body">
           @for (task of tasks; track task) {
           <tr>
+          <tr class="task-page__table-row" [appHighlightRecent]="task.dateCreated ?? ''">
             <td class="task-page__table-cell">{{ task._id }}</td>
             <td class="task-page__table-cell">{{ task.title }}</td>
+            <td class="task-page__table-cell">{{ task.dateCreated }}</td>
           </tr>
           }
         </tbody>

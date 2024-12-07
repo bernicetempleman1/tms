@@ -21,7 +21,7 @@ import { Component } from '@angular/core';
       </p>
       <p class="landing-page__paragraph">
         In this demonstration, you will learn how to perform CRUD (Create, Read,
-        Update, Delete) operations on garden data. This is a fundamental skill
+        Update, Delete) operations on project and task data. This is a fundamental skill
         for any web developer, and mastering it will give you a strong
         foundation in full-stack development.
       </p>

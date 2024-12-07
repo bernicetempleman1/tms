@@ -34,26 +34,6 @@ import { debounceTime, map, of } from 'rxjs';
         />
       </div>
 
-      <button class="project-page__button" routerLink="/projects/create">
-        Add Project
-      </button>
-
-      <button class="project-page__button" routerLink="/projects/update">
-        Update Project
-      </button>
-
-      <button class="project-page__button" routerLink="/projects/delete">
-        Delete Project
-      </button>
-
-      <button class="project-page__button" routerLink="/projects/read">
-        Project Details
-      </button>
-
-      <button class="project-page__button" routerLink="/projects/list">
-        List All Projects
-      </button>
-
       @if (serverMessage) {
       <div
         [ngClass]="{
@@ -71,7 +51,7 @@ import { debounceTime, map, of } from 'rxjs';
             <th class="project-page__table-header">Name</th>
             <th class="project-page__table-header">Description</th>
             <th class="project-page__table-header">Date Created</th>
-            <th class="task-page__table-header">Functions</th>
+            <th class="project-page__table-header">Delete</th>
           </tr>
         </thead>
         <tbody class="project-page__table-body">

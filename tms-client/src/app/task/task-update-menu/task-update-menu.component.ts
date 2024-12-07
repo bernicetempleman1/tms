@@ -25,12 +25,12 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     <div class="task-page">
       <h1 class="task-page__title">Task Update Menu</h1>
 
-      <div class="task-page__search-container">
+      <div class="task-page__filter-container">
         <input
           type="text"
           placeholder="Search tasks by title"
           [formControl]="txtSearchControl"
-          class="task-page__search"
+          class="task-page__filter"
         />
       </div>
 
@@ -49,6 +49,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
           <tr class="task-page__table-row">
             <th class="task-page__table-header">Task ID</th>
             <th class="task-page__table-header">Title</th>
+            <th class="task-page__table-header">Update</th>
           </tr>
         </thead>
         <tbody class="task-page__table-body">

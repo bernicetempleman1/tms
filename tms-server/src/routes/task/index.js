@@ -29,14 +29,19 @@ router.get("/", async (req, res, next) => {
 });
 
 // get task by id : BT
+// edited by MS
 router.get("/:taskId", async (req, res, next) => {
   try {
     const task = await Task.findOne({ _id: req.params.taskId });
 
+    if (!task) {
+      return res.status(404).send({ error: "Task not found" });
+    }
+
     res.send(task);
   } catch (err) {
     console.error(`Error while getting task: ${err}`);
-    next(err);
+    res.status(500).send({ error: "Internal Server Error" });
   }
 });
 

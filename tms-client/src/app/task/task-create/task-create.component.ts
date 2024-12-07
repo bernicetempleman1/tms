@@ -38,7 +38,10 @@ import { HttpClient } from '@angular/common/http';
       <div class="task-add-page__card">
         <form [formGroup]="taskForm" class="task-add-page__form">
           <div class="task-add-page__form-group">
-            <label for="title" class="task-add-page__form-label"
+            <label
+              for="title"
+              class="task-add-page__form-label"
+              title="Must be 3 or more characters"
               >Task Title<span class="required">*</span></label
             >
             <input
@@ -47,25 +50,32 @@ import { HttpClient } from '@angular/common/http';
               class="task-add-page__form-control"
               formControlName="title"
               required
-              placeholder="Enter the title of the task"
+              placeholder="Enter the title of the task: 3+ characters"
             />
           </div>
 
           <div class="task-add-page__form-group">
-            <label for="description" class="task-add-page__form-label"
-              >Description</label
+            <label
+              for="description"
+              class="task-add-page__form-label"
+              title="Must be 3 or more characters"
+              >Description<span class="required">*</span></label
             >
             <input
               type="text"
               id="description"
               class="task-add-page__form-control"
               formControlName="description"
-              placeholder="Optional: Enter a description of the project"
+              placeholder="Enter a description of the project: 3+ characters"
+              required
             />
           </div>
 
           <div class="task-add-page__form-group">
-            <label for="status" class="task-add-page__form-label"
+            <label
+              for="status"
+              class="task-add-page__form-label"
+              title="Select a Status"
               >Task Status<span class="required">*</span></label
             >
             <select
@@ -81,7 +91,10 @@ import { HttpClient } from '@angular/common/http';
           </div>
 
           <div class="task-add-page__form-group">
-            <label for="priority" class="task-add-page__form-label"
+            <label
+              for="priority"
+              class="task-add-page__form-label"
+              title="Select a Priority"
               >Task Priority<span class="required">*</span></label
             >
             <select
@@ -97,7 +110,10 @@ import { HttpClient } from '@angular/common/http';
           </div>
 
           <div class="task-add-page__form-group">
-            <label for="projectId" class="task-add-page__form-label"
+            <label
+              for="projectId"
+              class="task-add-page__form-label"
+              title="Select the Project this task belongs to"
               >Project<span class="required">*</span></label
             >
             <select
@@ -113,7 +129,10 @@ import { HttpClient } from '@angular/common/http';
           </div>
 
           <div class="task-add-page__form-group">
-            <label for="dueDate" class="task-add-page__form-label"
+            <label
+              for="dueDate"
+              class="task-add-page__form-label"
+              title="Select a due date"
               >Due Date<span class="required">*</span></label
             >
             <input

@@ -8,11 +8,11 @@ const dbName = "tms";
 const connectionString =
   "mongodb+srv://tms_user:s3cret@bellevueuniversity.lftytpq.mongodb.net/?retryWrites=true&w=majority&appName=BellevueUniversity";
 
-  // Connect to database 
+  // Connect to database
   beforeAll(async () => {
     const connectionString =
       "mongodb+srv://tms_user:s3cret@bellevueuniversity.lftytpq.mongodb.net/?retryWrites=true&w=majority&appName=BellevueUniversity";
-  
+
     try {
       await mongoose.connect(connectionString, {
         dbName: "tms",
@@ -22,13 +22,13 @@ const connectionString =
       console.error(`MongoDB connection error: ${err}`);
     }
   });
-  
+
   // Clear the database before each test
   beforeEach(async () => {
     await Project.deleteMany({});
     await Counter.deleteMany({});
   });
-  
+
   // Close the database connection after all tests
   afterAll(async () => {
     await mongoose.connection.close();
@@ -52,7 +52,7 @@ describe("Project Model Test", () => {
     expect(savedProject.name).toBe(projectData.name);
     expect(savedProject.description).toBe(projectData.description);
   });
- 
+
   it("should validate project name correctly", async () => {
     const projectData = {
         projectId: 1000,
@@ -102,7 +102,7 @@ describe("Project Model Test", () => {
     expect(savedProject1.projectId).toBe(1);
     expect(savedProject2.projectId).toBe(2);
   });
-  
+
 
   it("should fail to create a project with a name shorter than 3 characters", async () => {
     const projectData = {
@@ -160,7 +160,7 @@ describe("Project Model Test", () => {
         endDate: "2021-06-01T00:00:00.000Z",
         dateCreated: "2021-01-01T00:00:00.000Z",
         dateModified: "2021-01-05T00:00:00.000Z",
-      
+
     };
     const project = new Project(projectData);
     let err;
@@ -196,7 +196,7 @@ describe("Project Model Test", () => {
     }
     expect(err).toBeDefined();
     expect(err.message).toBe(
-      "End Date must be greater than Start Date" 
+      "End Date must be greater than Start Date"
     );
   });
 });
