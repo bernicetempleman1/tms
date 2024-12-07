@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { Task } from '../task';
 import { RouterLink } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, map, of } from 'rxjs';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-task-search',

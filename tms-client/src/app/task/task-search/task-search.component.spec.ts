@@ -69,7 +69,7 @@ describe('TaskSearchComponent', () => {
     expect(component.tasks[0].title).toBe('Complete github repository setup');
   }));
 
-  //
+  // Test should filter tasks when multiple tasks match the search term
   it('should filter tasks when multiple tasks match the search term', fakeAsync(() => {
     const mockTasks: Task[] = [
       {
@@ -107,7 +107,7 @@ describe('TaskSearchComponent', () => {
     expect(component.tasks.length).toBe(2);
   }));
 
-  //
+  // Test should return no tasks when the search term matches nothing
   it('should return no tasks when the search term matches nothing', fakeAsync(() => {
     const mockTasks: Task[] = [
       {
