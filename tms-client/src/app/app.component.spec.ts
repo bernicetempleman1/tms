@@ -27,14 +27,14 @@ describe('AppComponent', () => {
   it(`should have the 'tms-client' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('tms-client');
+    expect(app.title).toEqual('TMS');
   });
 
     it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Task Management System');
+    expect(compiled.querySelector('h2')?.textContent).toContain('TMS');
     });
 
 });

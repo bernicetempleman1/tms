@@ -25,12 +25,12 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     <div class="task-page">
       <h1 class="task-page__title">Task Update Menu</h1>
 
-      <div class="task-page__search-container">
+      <div class="task-page__filter-container">
         <input
           type="text"
           placeholder="Search tasks by title"
           [formControl]="txtSearchControl"
-          class="task-page__search"
+          class="task-page__filter"
         />
       </div>
 

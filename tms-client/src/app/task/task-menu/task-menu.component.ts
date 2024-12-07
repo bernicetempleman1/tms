@@ -22,38 +22,14 @@ import { debounceTime, map, of } from 'rxjs';
   template: `
     <div class="task-page">
       <h1 class="task-page__title">Task Menu</h1>
-      <div class="task-page__search-container">
+      <div class="task-page__filter-container">
         <input
           type="text"
           placeholder="Search tasks by title"
           [formControl]="txtSearchControl"
-          class="project-page__search"
+          class="task-page__filter"
         />
       </div>
-
-      <button class="task-page__button" routerLink="/tasks/create">
-        Add Task
-      </button>
-
-      <button class="task-page__button" routerLink="/tasks/update">
-        Update Task
-      </button>
-
-      <button class="task-page__button" routerLink="/tasks/delete">
-        Delete Task
-      </button>
-
-      <button class="task-page__button" routerLink="/tasks/read">
-        Task Details
-      </button>
-
-      <button class="task-page__button" routerLink="/tasks/list">
-        List All Tasks
-      </button>
-
-      <button class="task-page__button" routerLink="/tasks/search">
-        Search Tasks
-      </button>
 
       @if (serverMessage) {
       <div

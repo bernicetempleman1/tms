@@ -34,26 +34,6 @@ import { debounceTime, map, of } from 'rxjs';
         />
       </div>
 
-      <button class="project-page__button" routerLink="/projects/create">
-        Add Project
-      </button>
-
-      <button class="project-page__button" routerLink="/projects/update">
-        Update Project
-      </button>
-
-      <button class="project-page__button" routerLink="/projects/delete">
-        Delete Project
-      </button>
-
-      <button class="project-page__button" routerLink="/projects/read">
-        Project Details
-      </button>
-
-      <button class="project-page__button" routerLink="/projects/list">
-        List All Projects
-      </button>
-
       @if (serverMessage) {
       <div
         [ngClass]="{
