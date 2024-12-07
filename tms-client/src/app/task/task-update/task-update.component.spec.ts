@@ -60,6 +60,7 @@ describe('TaskUpdateComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  //should have a valid form when all fields are filled correctly
   it('should have a valid form when all fields are filled correctly', () => {
     component.taskForm.controls['title'].setValue('Test Plant');
     component.taskForm.controls['priority'].setValue('High');
@@ -67,6 +68,7 @@ describe('TaskUpdateComponent', () => {
     expect(component.taskForm.valid).toBeTruthy();
   });
 
+  // should call updateTask and navigate form submission
   it('should call updateTask and navigate on successful form submission', fakeAsync(() => {
     const updateTaskDTO = {
       title: 'Test Plant',
@@ -92,6 +94,7 @@ describe('TaskUpdateComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/tasks']);
   }));
 
+  // should handle error on form submission failure
   it('should handle error on form submission failure', fakeAsync(() => {
     spyOn(taskService, 'updateTask').and.returnValue(
       throwError('Error updating task')

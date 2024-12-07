@@ -16,6 +16,7 @@ import { Project } from '../project';
 import { of, throwError } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
+//tests for project delete
 describe('ProjectDeleteComponent', () => {
   let component: ProjectDeleteComponent;
   let fixture: ComponentFixture<ProjectDeleteComponent>;
@@ -36,10 +37,12 @@ describe('ProjectDeleteComponent', () => {
     projectService = TestBed.inject(ProjectService);
   });
 
+  //should create
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
+  //should handle error when fetching projects
   it('should handle error when fetching projects', () => {
     spyOn(projectService, 'getProjects').and.returnValue(
       throwError('Error fetching projects')
@@ -48,6 +51,7 @@ describe('ProjectDeleteComponent', () => {
     expect(component.projects.length).toBe(0);
   });
 
+  //should delete a project
   it('should delete a project', () => {
     const mockProjects: Project[] = [
       { _id: '1', projectId: 1, name: 'Rose', description: 'Flower' },
@@ -62,6 +66,7 @@ describe('ProjectDeleteComponent', () => {
     expect(component.projects[0]._id).toBe('2');
   });
 
+  // should display title
   it('should display title "Delete Project"', () => {
     //Assign DOM to variable
     const compiled = fixture.nativeElement;
@@ -72,5 +77,4 @@ describe('ProjectDeleteComponent', () => {
     expect(title).toBeTruthy();
     expect(title.textContent).toContain('Delete Project');
   });
-
 });

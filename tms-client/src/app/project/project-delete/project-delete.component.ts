@@ -7,7 +7,6 @@
  */
 //Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
 import { Component } from '@angular/core';
-
 import { ProjectService } from '../project.service';
 import { Project } from '../project';
 import { CommonModule } from '@angular/common';
@@ -204,12 +203,13 @@ export class ProjectDeleteComponent {
     );
   }
 
-  // delete project
+  // delete project confirmation 
   deleteProject(projectId: number) {
     if (!confirm('Are you sure you want to delete this project?')) {
       return;
     }
 
+    //  call project service to delete
     this.projectService.deleteProject(projectId).subscribe({
       next: () => {
         console.log(`Project with ID ${projectId} deleted successfully`);

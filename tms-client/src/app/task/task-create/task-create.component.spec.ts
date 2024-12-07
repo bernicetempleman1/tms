@@ -7,7 +7,6 @@
  */
 //Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
 
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TaskCreateComponent } from './task-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +20,7 @@ import { of, throwError } from 'rxjs';
 import { AddTaskDTO, Task } from '../task';
 import { environment } from '../../../environments/environment';
 
+// Test for Task Create component
 describe('TaskCreateComponent', () => {
   let component: TaskCreateComponent;
   let fixture: ComponentFixture<TaskCreateComponent>;
@@ -60,6 +60,7 @@ describe('TaskCreateComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  // should have a valid form when all fields are filled correctly
   it('should have a valid form when all fields are filled correctly', () => {
     component.taskForm.controls['title'].setValue('Test project');
     component.taskForm.controls['description'].setValue('Test project');
@@ -70,6 +71,7 @@ describe('TaskCreateComponent', () => {
     expect(component.taskForm.valid).toBeTrue();
   });
 
+  //should call add task and navigate successful form submission
   it('should call addtask and navigate on successful form submission', () => {
     const addTaskDTO: AddTaskDTO = {
       title: 'Test Task',
@@ -103,6 +105,7 @@ describe('TaskCreateComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/tasks']);
   });
 
+  //should handle errors on form submission failure
   it('should handle error on form submission failure', () => {
     spyOn(taskService, 'addTask').and.returnValue(
       throwError('Error creating task')
@@ -122,6 +125,7 @@ describe('TaskCreateComponent', () => {
     );
   });
 
+  //should displau title
   it('should display title "Add New task"', () => {
     //Assign DOM to variable
     const compiled = fixture.nativeElement;
@@ -132,6 +136,4 @@ describe('TaskCreateComponent', () => {
     expect(title).toBeTruthy();
     expect(title.textContent).toContain('Add New Task');
   });
-
-
 });

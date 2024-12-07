@@ -243,6 +243,7 @@ export class ProjectReadByIdComponent {
       this.router.navigate(['/projects']);
       return;
     }
+    // call project service to get project for read only form
     this.projectService.getProject(this.projectId).subscribe({
       next: (project: Project) => {
         if (!project) {

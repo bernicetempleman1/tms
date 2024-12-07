@@ -5,9 +5,7 @@
  * Description: Update task
  *
  */
-//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
-
-//155
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 155}
 
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -23,6 +21,7 @@ import { TaskService } from '../task.service';
 import { Task } from '../task';
 import { environment } from '../../../environments/environment';
 
+//update task component
 @Component({
   selector: 'app-task-update',
   standalone: true,
@@ -31,8 +30,8 @@ import { environment } from '../../../environments/environment';
     <div class="task-update-page">
       <h1 class="task-update-page__title">Task Update</h1>
       <h4 class="task-update-page__subtitle">
-        Update information about your selected task, including its
-        priority and status.
+        Update information about your selected task, including its priority and
+        status.
       </h4>
       @if (errorMessage) {
       <div class="message message--error">{{ errorMessage }}</div>
@@ -176,8 +175,9 @@ import { environment } from '../../../environments/environment';
     `,
   ],
 })
+
+// export
 export class TaskUpdateComponent {
-  // _id: string;
   taskId: string;
   task: Task;
   errorMessage: string;
@@ -208,6 +208,7 @@ export class TaskUpdateComponent {
       return;
     }
 
+    // get tasks
     this.taskService.getTask(this.taskId).subscribe({
       next: (task: Task) => {
         this.task = task;
@@ -221,13 +222,16 @@ export class TaskUpdateComponent {
   }
 
   onSubmit() {
+    // check if valid
     if (!this.taskForm.valid) {
-      this.errorMessage = 'Please fill in all required fields.';
+      this.errorMessage = 'Please fill in all fields.';
       return;
     }
     console.log('task-update: submit');
     if (this.taskForm.valid) {
       console.log('task-create: valid');
+
+      // declare and set updateTaskDTO
       const updateTaskDTO = {
         title: this.taskForm.controls['title'].value,
         status: this.taskForm.controls['status'].value,
@@ -236,6 +240,7 @@ export class TaskUpdateComponent {
 
       console.log('Update Task DTO:', updateTaskDTO);
 
+      // call task Service to update task 
       this.taskService.updateTask(this.taskId, updateTaskDTO).subscribe({
         next: (result: any) => {
           console.log(`TaskId: ${result._id} ${result.message}`);
