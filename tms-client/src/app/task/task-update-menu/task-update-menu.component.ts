@@ -72,13 +72,6 @@ import { FormsModule } from '@angular/forms';
         />
       </div>
 
-      <div class="task-page__highlight-info">
-        <p>
-          Rows highlighted in green indicate tasks that were created within the
-          last 30 days.
-        </p>
-      </div>
-
       <div
         *ngIf="serverMessage"
         [ngClass]="{
