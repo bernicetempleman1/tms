@@ -1,5 +1,3 @@
-
-
 /**
  * Author: Bernice Templeman
  * Date: 11 November 2024
@@ -20,7 +18,12 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
 @Component({
   selector: 'app-project-search',
   standalone: true,
-  imports: [RouterLink, CommonModule, ReactiveFormsModule, HighlightRecentDirective],
+  imports: [
+    RouterLink,
+    CommonModule,
+    ReactiveFormsModule,
+    HighlightRecentDirective,
+  ],
 
   template: `
     <div class="project-page">
@@ -37,10 +40,10 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
 
       <div class="project-page__highlight-info">
         <p>
-          Rows highlighted in green indicate projects that were created within the
-          last 30 days.
+          Rows highlighted in green indicate projects that were created within
+          the last 30 days.
         </p>
-</div>
+      </div>
 
       @if (serverMessage) {
       <div
@@ -63,7 +66,10 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
         </thead>
         <tbody class="project-page__table-body">
           @for (project of projects; track project) {
-          <tr class="project-page__table-row" [appHighlightRecent]="project.dateCreated ?? ''">
+          <tr
+            class="project-page__table-row"
+            [appHighlightRecent]="project.dateCreated ?? ''"
+          >
             <td class="project-page__table-cell">{{ project.projectId }}</td>
             <td class="project-page__table-cell">{{ project.name }}</td>
             <td class="project-page__table-cell">{{ project.description }}</td>
@@ -79,96 +85,101 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
       }
     </div>
   `,
-  styles: `
-.project-page {
-max-width: 80%;
-margin: 0 auto;
-padding: 20px;
-}
-.project-page__title {
-text-align: center;
-color: #563d7c;
-}
-.project-page__table {
-width: 100%;
-border-collapse: collapse;
-}
-.project-page__table-header {
-background-color: #FFE484;
-color: #000;
-border: 1px solid black;
-padding: 5px;
-text-align: left;
-}
+  styles: [
+    `
+      .project-page {
+        max-width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .project-page__title {
+        text-align: center;
+        color: #563d7c;
+      }
+      .project-page__table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .project-page__table-header {
+        background-color: #ffe484;
+        color: #000;
+        border: 1px solid black;
+        padding: 5px;
+        text-align: left;
+      }
 
-.project-page__table-cell {
-border: 1px solid black;
-padding: 5px;
-text-align: left;
-}
-.project-page__table-cell--functions {
-text-align: center;
-}
-.project-page__icon-link {
-cursor: pointer;
-color: #6c757d;
-text-decoration: none;
-margin: 0 5px;
-}
-.project-page__icon-link:hover {
-color: #000;
-}
-.project-page__no-projects {
-text-align: center;
-color: #6c757d;
-}
-.project-page__button {
-background-color: #563d7c;
-color: #fff;
-border: none;
-padding: 10px 20px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-margin: 10px 2px;
-cursor: pointer;
-border-radius: 5px;
-transition: background-color 0.3s;
-}
-.project-page__button:hover {
-background-color: #6c757d;
-}
-.message-alert {
-padding: 15px;
-margin-bottom: 20px;
-border: 1px solid transparent;
-border-radius: 4px;
-color: #a94442;
+      .project-page__table-cell {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: left;
+      }
+      .project-page__table-cell--functions {
+        text-align: center;
+      }
+      .project-page__icon-link {
+        cursor: pointer;
+        color: #6c757d;
+        text-decoration: none;
+        margin: 0 5px;
+      }
+      .project-page__icon-link:hover {
+        color: #000;
+      }
+      .project-page__no-projects {
+        text-align: center;
+        color: #6c757d;
+      }
+      .project-page__button {
+        background-color: #563d7c;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 10px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+      .project-page__button:hover {
+        background-color: #6c757d;
+      }
+      .message-alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: #a94442;
 
-
-background-color: #f2dede;
-border-color: #ebccd1;
-}
-.message-success {
-padding: 15px;
-margin-bottom: 20px;
-border: 1px solid transparent;
-border-radius: 4px;
-color: #3c763d;
-background-color: #dff0d8;
-border-color: #d6e9c6;
-}
-.project-page__search-container {
-display: flex;
-align-items: center;
-margin-bottom: 1rem;
-}
-.project-page__search {
-flex: 1;
-padding: 0.5rem;
-margin-right: 0.5rem;
-}
-`,
+        background-color: #f2dede;
+        border-color: #ebccd1;
+      }
+      .message-success {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+      }
+      .project-page__search-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .project-page__search {
+        flex: 1;
+        padding: 0.5rem;
+        margin-right: 0.5rem;
+      }
+      .project-page__table-row:hover {
+        background-color: #6c757d;
+        color: white;
+      }
+    `,
+  ],
 })
 export class ProjectSearchComponent {
   projects: Project[] = [];
@@ -234,4 +245,3 @@ export class ProjectSearchComponent {
     }, 3000);
   }
 }
-

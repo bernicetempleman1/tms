@@ -250,7 +250,6 @@ export class AppComponent {
 
   // Array to hold the task management links in the side menu. Must be an
   TaskManagement = [
-    { name: 'Task Menu', url: '/tasks' },
     { name: 'Create Task', url: '/tasks/create' },
     { name: 'Read a Task', url: '/tasks/read' },
     { name: 'Update Task', url: '/tasks/update' },

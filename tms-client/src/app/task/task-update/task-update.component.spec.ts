@@ -91,7 +91,7 @@ describe('TaskUpdateComponent', () => {
     component.onSubmit();
     tick();
     expect(taskService.updateTask).toHaveBeenCalledWith('1', updateTaskDTO);
-    expect(router.navigate).toHaveBeenCalledWith(['/tasks']);
+    expect(router.navigate).toHaveBeenCalledWith(['/tasks/update']);
   }));
 
   // should handle error on form submission failure

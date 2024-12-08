@@ -20,7 +20,6 @@ import { ProjectUpdateComponent } from './project/project-update/project-update.
 import { ProjectUpdateMenuComponent } from './project/project-update-menu/project-update-menu.component';
 import { ProjectReadMenuComponent } from './project/project-read-menu/project-read-menu.component';
 
-import { TaskMenuComponent } from './task/task-menu/task-menu.component';
 import { TaskCreateComponent } from './task/task-create/task-create.component';
 import { TaskUpdateMenuComponent } from './task/task-update-menu/task-update-menu.component';
 import { TaskUpdateComponent } from './task/task-update/task-update.component';
@@ -36,7 +35,7 @@ export const routes: Routes = [
   },
   {
     path: 'tasks',
-    component: TaskMenuComponent,
+    component: TaskSearchComponent,
   },
   {
     path: 'tasks/create',

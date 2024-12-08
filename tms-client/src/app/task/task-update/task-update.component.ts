@@ -20,12 +20,14 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TaskService } from '../task.service';
 import { Task } from '../task';
 import { environment } from '../../../environments/environment';
+import { FormsModule } from '@angular/forms';
 
 //update task component
 @Component({
   selector: 'app-task-update',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink,
+    FormsModule],
   template: `
     <div class="task-update-page">
       <h1 class="task-update-page__title">Task Update</h1>
@@ -97,7 +99,7 @@ import { environment } from '../../../environments/environment';
             type="submit"
             class="task-update-page__btn"
             (click)="onSubmit()"
-            class="plant-details-page__btn"
+            class="task-update-page__btn"
             value="Submit"
           >
             Save Changes
@@ -105,7 +107,7 @@ import { environment } from '../../../environments/environment';
         </form>
       </div>
       <br />
-      <a class="task-update-page__link" routerLink="/tasks">Return</a>
+      <a class="task-update-page__link" routerLink="/tasks/update">Return</a>
     </div>
   `,
   styles: [
@@ -172,6 +174,10 @@ import { environment } from '../../../environments/environment';
       .task-update-page__link:hover {
         text-decoration: underline;
       }
+      .task-update-page__table-row:hover {
+        background-color: #6c757d;
+        color: white;
+      }
     `,
   ],
 })
@@ -181,6 +187,9 @@ export class TaskUpdateComponent {
   taskId: string;
   task: Task;
   errorMessage: string;
+  allTasks: Task[] = [];
+  tasks: Task[] = [];
+  filterType: string = '';
 
   taskForm: FormGroup = this.fb.group({
     title: [
@@ -240,11 +249,11 @@ export class TaskUpdateComponent {
 
       console.log('Update Task DTO:', updateTaskDTO);
 
-      // call task Service to update task 
+      // call task Service to update task
       this.taskService.updateTask(this.taskId, updateTaskDTO).subscribe({
         next: (result: any) => {
           console.log(`TaskId: ${result._id} ${result.message}`);
-          this.router.navigate(['/tasks']);
+          this.router.navigate(['/tasks/update']);
         },
         error: (err: any) => {
           console.error('Error updating task', err);

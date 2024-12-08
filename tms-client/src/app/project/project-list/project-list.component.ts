@@ -172,6 +172,10 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
         padding: 0.5rem;
         margin-right: 0.5rem;
       }
+      .project-page__table-row:hover {
+        background-color: #6c757d;
+        color: white;
+      }
     `,
   ],
 })

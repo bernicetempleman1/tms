@@ -41,43 +41,48 @@ import { Task } from '../task';
       </p>
     </div>
   `,
-  styles: `
-    .task-page {
-      max-width: 80%;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .task-page__title {
-      text-align: center;
-      color: #563d7c;
-    }
-    .task-page__table {
-      width: 80%;
-      margin: 1;
-      border-collapse: collapse;
-    }
-    .task-page__table-header {
-      background-color: #FFE484;
-      color: #000;
-      border: 1px solid black;
-      padding: 5px;
-      text-align: left;
-    }
-    .task-page__table-cell {
-      border: 1px solid black;
-      padding: 5px;
-      text-align: left;
-    }
-    .task-page__table-cell--functions {
-      text-align: center;
-    }
-    .task-page__no-tasks {
-      text-align: center;
-      color: #6c757d;
-    }
-  `
+  styles: [
+    `
+      .task-page {
+        max-width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .task-page__title {
+        text-align: center;
+        color: #563d7c;
+      }
+      .task-page__table {
+        width: 80%;
+        margin: 1;
+        border-collapse: collapse;
+      }
+      .task-page__table-header {
+        background-color: #ffe484;
+        color: #000;
+        border: 1px solid black;
+        padding: 5px;
+        text-align: left;
+      }
+      .task-page__table-cell {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: left;
+      }
+      .task-page__table-cell--functions {
+        text-align: center;
+      }
+      .task-page__no-tasks {
+        text-align: center;
+        color: #6c757d;
+      }
+      .task-page__table-row:hover {
+        background-color: #6c757d;
+        color: white;
+      }
+    `,
+  ],
 })
-
 export class TaskListComponent {
   tasks: Task[] = [];
 
@@ -90,7 +95,7 @@ export class TaskListComponent {
       error: (err: any) => {
         console.error(`Error occurred while retrieving tasks: ${err}`);
         this.tasks = [];
-      }
+      },
     });
   }
 }

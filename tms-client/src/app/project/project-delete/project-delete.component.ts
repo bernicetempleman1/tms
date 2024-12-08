@@ -169,6 +169,10 @@ import { debounceTime, map, of } from 'rxjs';
         padding: 0.5rem;
         margin-right: 0.5rem;
       }
+      .project-page__table-row:hover {
+        background-color: #6c757d;
+        color: white;
+      }
     `,
   ],
 })
@@ -203,7 +207,7 @@ export class ProjectDeleteComponent {
     );
   }
 
-  // delete project confirmation 
+  // delete project confirmation
   deleteProject(projectId: number) {
     if (!confirm('Are you sure you want to delete this project?')) {
       return;

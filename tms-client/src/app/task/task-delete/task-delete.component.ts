@@ -18,27 +18,27 @@ import { RouterLink } from '@angular/router';
 
       @if(tasks && tasks.length > 0) {
       <table class="task-page__table">
-        <thead class="task-page__head">
+        <thead class="task-page__table-head">
           <tr class="task-page__table-row">
-            <th class="task-page__header">Title</th>
-            <th class="task-page__header">Description</th>
-            <th class="task-page__header">Status</th>
-            <th class="task-page__header">Priority</th>
-            <th class="task-page__header">Due Date</th>
-            <th class="task-page__header">Project ID</th>
-            <th class="task-page__header">Function</th>
+            <th class="task-page__table-header">Title</th>
+            <th class="task-page__table-header">Description</th>
+            <th class="task-page__table-header">Status</th>
+            <th class="task-page__table-header">Priority</th>
+            <th class="task-page__table-header">Due Date</th>
+            <th class="task-page__table-header">Project ID</th>
+            <th class="task-page__table-header">Function</th>
           </tr>
         </thead>
 
         <tbody class="task-page__table-body">
           <tr *ngFor="let task of tasks" class="task-page__table-row">
-            <td class="task-page__cell">{{ task.title }}</td>
-            <td class="task-page__cell">{{ task.description }}</td>
-            <td class="task-page__cell">{{ task.status }}</td>
-            <td class="task-page__cell">{{ task.priority }}</td>
-            <td class="task-page__cell">{{ task.dueDate }}</td>
-            <td class="task-page__cell">{{ task.projectId }}</td>
-            <td class="task-page__cell task-page__cell--functions">
+            <td class="task-page__table-cell">{{ task.title }}</td>
+            <td class="task-page__table-cell">{{ task.description }}</td>
+            <td class="task-page__table-cell">{{ task.status }}</td>
+            <td class="task-page__table-cell">{{ task.priority }}</td>
+            <td class="task-page__table-cell">{{ task.dueDate }}</td>
+            <td class="task-page__table-cell">{{ task.projectId }}</td>
+            <td class="task-page__table-cell task-page__cell--functions">
               <a (click)="deleteTask(task._id)" class="task-page__icon-link"
                 ><i class="fas fa-trash-alt"></i
               ></a>
@@ -83,7 +83,7 @@ import { RouterLink } from '@angular/router';
       }
       .task-page__icon-link {
         cursor: pointer;
-        color: #6c757d;
+        color: green;
         text-decoration: none;
         margin: 0 5px;
       }
@@ -158,6 +158,10 @@ import { RouterLink } from '@angular/router';
         text-align: center;
         color: #6c757d;
         margin-bottom: 1rem;
+      }
+      .task-page__table-row:hover {
+        background-color: #6c757d;
+        color: white;
       }
     `,
   ],

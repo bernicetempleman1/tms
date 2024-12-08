@@ -192,6 +192,10 @@ import { Project, UpdateProjectDTO } from '../project';
       .project-details-page__link:hover {
         text-decoration: underline;
       }
+      .project-page__table-row:hover {
+        background-color: #6c757d;
+        color: white;
+      }
     `,
   ],
 })
