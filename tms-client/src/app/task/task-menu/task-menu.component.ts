@@ -48,7 +48,7 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
           type="button"
           (click)="filterTasksPriority()"
           value="Filter Tasks by Priority"
-          class="taskpage__filter-button"
+          class="task-page__filter-button"
         />
       </div>
 
@@ -63,7 +63,7 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
           type="button"
           (click)="filterTasksStatus()"
           value="Filter Tasks by Status"
-          class="taskpage__filter-button"
+          class="task-page__filter-button"
         />
       </div>
 
