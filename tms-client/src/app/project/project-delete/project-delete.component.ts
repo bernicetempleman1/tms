@@ -215,7 +215,7 @@ export class ProjectDeleteComponent {
         console.log(`Project with ID ${projectId} deleted successfully`);
         this.projects = this.projects.filter((g) => g.projectId !== projectId);
         this.serverMessageType = 'success';
-        this.serverMessage = `Project with ID ${projectId} deleted successfully`;
+        this.serverMessage = `Project with ID ${projectId} deleted successfully. Please delete tasks linked to this Project Id.`;
         this.clearMessageAfterDelay();
       },
       error: (err: any) => {
