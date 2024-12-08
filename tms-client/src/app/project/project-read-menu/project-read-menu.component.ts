@@ -198,32 +198,6 @@ export class ProjectReadMenuComponent {
     );
   }
 
-  // delete project
-  deleteProject(projectId: number) {
-    if (!confirm('Are you sure you want to delete this project?')) {
-      return;
-    }
-
-    this.projectService.deleteProject(projectId).subscribe({
-      next: () => {
-        console.log(`Project with ID ${projectId} deleted successfully`);
-        this.projects = this.projects.filter((g) => g.projectId !== projectId);
-        this.serverMessageType = 'success';
-        this.serverMessage = `Project with ID ${projectId} deleted successfully`;
-        this.clearMessageAfterDelay();
-      },
-      error: (err: any) => {
-        console.error(
-          `Error occurred while deleting project with ID ${projectId}: ${err}`
-        );
-        this.serverMessageType = 'error';
-        this.serverMessage = `Error occurred while deleting project with ID ${projectId}. Please
-  try again later.`;
-        this.clearMessageAfterDelay();
-      },
-    });
-  }
-
   private clearMessageAfterDelay() {
     setTimeout(() => {
       this.serverMessage = null;

@@ -76,7 +76,7 @@ describe('ProjectReadByIdComponent', () => {
   //should have a valid form when all fields filled correctly
   it('should have a valid form when all fields are filled correctly', () => {
     component.projectForm.controls['projectId'].setValue(1);
-    component.projectForm.controls['name'].setValue('Test Garden');
+    component.projectForm.controls['name'].setValue('Test Project');
     component.projectForm.controls['description'].setValue('Test Description');
     component.projectForm.controls['startDate'].setValue('2021-01-01T00:00:00.000Z');
     component.projectForm.controls['endDate'].setValue('2021-06-15T00:00:00.000Z');

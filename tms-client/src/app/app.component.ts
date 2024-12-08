@@ -262,7 +262,6 @@ export class AppComponent {
 
   // Array to hold the task management links in the side menu. Must be an
   ProjectManagement = [
-    { name: 'Project Menu', url: '/projects' },
     { name: 'Create Project', url: '/projects/create' },
     { name: 'Read a Project', url: '/projects/read' },
     { name: 'Update Project', url: '/projects/update' },

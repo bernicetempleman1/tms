@@ -58,6 +58,7 @@ router.post("/", async (req, res, next) => {
   try {
     const valid = validateAddProject(req.body);
     if (!valid) {
+      console.log(req.body);
       return next(createError(400, ajv.errorsText(validateAddProject.errors)));
     }
     const newProject = new Project(req.body);
@@ -78,6 +79,7 @@ router.patch("/:projectId", async (req, res, next) => {
     const project = await Project.findOne({ projectId: req.params.projectId });
     const valid = validateUpdateProject(req.body);
     if (!valid) {
+      console.log(req.body);
       return next(
         createError(400, ajv.errorsText(validateUpdateProject.errors))
       );

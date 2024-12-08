@@ -1,3 +1,10 @@
+/**
+ * Author: Bernice Templeman
+ * Date: 9 December 2024
+ * File: highlight-recent-directive.spec.ts
+ * Description: Tests for Highlight recent
+ *
+ */
 import { HighlightRecentDirective } from './highlight-recent.directive';
 import { ElementRef } from '@angular/core';
 describe('HighlightRecentDirective', () => {

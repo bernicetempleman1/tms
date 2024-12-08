@@ -42,7 +42,7 @@ Angular Form Business Rules
 
 */
 export interface Project {
-  _id: string;
+  _id?: string;
   projectId: number;
   name: string;
   description?: string;
@@ -52,5 +52,5 @@ export interface Project {
   dateModified?: string;
 }
 
-export type AddProjectDTO = Omit<Project, '_id' | 'description' | 'dateCreated' | 'dateModified'| 'startDate' | 'endDate'>;
+export type AddProjectDTO = Omit<Project, '_id' | 'projectId'| 'dateCreated' | 'dateModified' >;
 export type UpdateProjectDTO = Omit<Project, '_id' | 'dateCreated' | 'dateModified'| 'startDate' | 'endDate'| 'projectId'>;

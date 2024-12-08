@@ -125,7 +125,7 @@ describe('TaskCreateComponent', () => {
     );
   });
 
-  //should displau title
+  //should display title
   it('should display title "Add New task"', () => {
     //Assign DOM to variable
     const compiled = fixture.nativeElement;

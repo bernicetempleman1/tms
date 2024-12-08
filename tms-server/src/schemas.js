@@ -22,22 +22,22 @@ const addProjectSchema = {
       // verify valid endate
       endDate: {
         type: "string",
-        pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
+       // pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
       },
       dateCreated: {
         type: "string",
-        pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
+       // pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
       },
       dateModified: {
         type: "string",
-        pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
+        //pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
       },
       projectId : {
         type: "string",
       }
     },
     //A project must have a name and a start date
-    required: ["name", "startDate", "endDate"],
+    required: ["name", "startDate"],
     additionalProperties: false,
   };
 
@@ -46,19 +46,10 @@ const addProjectSchema = {
     properties: {
       name: { type: "string", minLength: 3, maxLength: 100 },
       description: { type: "string", maxLength: 500 },
-      //The startDate of a project must be a valid date
-      startDate: {
-        type: "string",
-        pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
-      },
-      // verify valid endate
-      endDate: {
-        type: "string",
-        pattern: "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z)?$",
-      },
+
     },
     //A project must have a name and a start date
-    required: ["name", "startDate", "endDate"],
+    required: ["name", "description"],
     additionalProperties: false,
   };
 
