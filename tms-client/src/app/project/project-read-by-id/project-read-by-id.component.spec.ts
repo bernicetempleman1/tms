@@ -24,6 +24,7 @@ import { Project, UpdateProjectDTO } from '../project';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
+//tests for project read
 describe('ProjectReadByIdComponent', () => {
   let component: ProjectReadByIdComponent;
   let fixture: ComponentFixture<ProjectReadByIdComponent>;
@@ -59,6 +60,7 @@ describe('ProjectReadByIdComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  // should create the component and initialize the form
   it('should create the component and initialize the form', () => {
     expect(component).toBeTruthy();
     expect(component.projectForm).toBeTruthy();
@@ -71,9 +73,10 @@ describe('ProjectReadByIdComponent', () => {
     expect(component.projectForm.controls['dateModified']).toBeTruthy();
   });
 
+  //should have a valid form when all fields filled correctly
   it('should have a valid form when all fields are filled correctly', () => {
     component.projectForm.controls['projectId'].setValue(1);
-    component.projectForm.controls['name'].setValue('Test Garden');
+    component.projectForm.controls['name'].setValue('Test Project');
     component.projectForm.controls['description'].setValue('Test Description');
     component.projectForm.controls['startDate'].setValue('2021-01-01T00:00:00.000Z');
     component.projectForm.controls['endDate'].setValue('2021-06-15T00:00:00.000Z');
@@ -82,6 +85,7 @@ describe('ProjectReadByIdComponent', () => {
     expect(component.projectForm.valid).toBeTrue();
   });
 
+  // should display title
   it('should display title "Project Details"', () => {
     //Assign DOM to variable
     const compiled = fixture.nativeElement;

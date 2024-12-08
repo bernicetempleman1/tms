@@ -1,3 +1,11 @@
+
+/**
+ * Author: Bernice Templeman
+ * Date: 9 December 2024
+ * File: highlight-recent-directive.spec.ts
+ * Description: Tests for Highlight recent
+ *
+ */
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 @Directive({
   selector: '[appHighlightRecent]',

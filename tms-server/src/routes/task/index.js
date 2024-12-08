@@ -17,7 +17,7 @@ const ajv = new Ajv();
 const validateAddTask = ajv.compile(addTaskSchema);
 const validateUpdateTask = ajv.compile(updateTaskSchema);
 
-// get lists of tasks : BT
+// get lists of tasks : BT, MS, LH
 router.get("/", async (req, res, next) => {
   try {
     const tasks = await Task.find({});
@@ -28,7 +28,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// get task by id : BT
+// get task by id : BT, LH
 // edited by MS
 router.get("/:taskId", async (req, res, next) => {
   try {

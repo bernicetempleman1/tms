@@ -17,7 +17,7 @@ const { addProjectSchema, updateProjectSchema } = require("../../schemas");
 const validateAddProject = ajv.compile(addProjectSchema);
 const validateUpdateProject = ajv.compile(updateProjectSchema);
 
-// get list of projects : BT
+// get list of projects : BT, LH
 router.get("/", async (req, res, next) => {
   try {
     const projects = await Project.find({});
@@ -28,7 +28,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-//read a project by id : BT
+//read a project by id : BT, LH
 router.get("/:projectId", async (req, res, next) => {
   try {
     const project = await Project.findOne({ projectId: req.params.projectId });
@@ -49,6 +49,52 @@ router.delete("/:projectId", async (req, res, next) => {
     });
   } catch (err) {
     console.error(`Error while deleting project: ${err}`);
+    next(err);
+  }
+});
+
+// Create a project: BT, MH
+router.post("/", async (req, res, next) => {
+  try {
+    const valid = validateAddProject(req.body);
+    if (!valid) {
+      console.log(req.body);
+      return next(createError(400, ajv.errorsText(validateAddProject.errors)));
+    }
+    const newProject = new Project(req.body);
+    await newProject.save();
+    res.send({
+      message: "Project created successfully",
+      projectId: newProject.projectId,
+    });
+  } catch (err) {
+    console.error(`Error while creating project: ${err}`);
+    next(err);
+  }
+});
+
+// Update a project: BT, MH
+router.patch("/:projectId", async (req, res, next) => {
+  try {
+    const project = await Project.findOne({ projectId: req.params.projectId });
+    const valid = validateUpdateProject(req.body);
+    if (!valid) {
+      console.log(req.body);
+      return next(
+        createError(400, ajv.errorsText(validateUpdateProject.errors))
+      );
+    }
+    project.set({
+      name: req.body.name,
+      description: req.body.description,
+    });
+    await project.save();
+    res.send({
+      message: "Project updated successfully",
+      projectId: project.projectId,
+    });
+  } catch (err) {
+    console.error(`Error while updating project: ${err}`);
     next(err);
   }
 });

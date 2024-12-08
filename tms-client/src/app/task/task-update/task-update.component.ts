@@ -5,9 +5,7 @@
  * Description: Update task
  *
  */
-//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
-
-//155
+//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 155}
 
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -22,17 +20,20 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TaskService } from '../task.service';
 import { Task } from '../task';
 import { environment } from '../../../environments/environment';
+import { FormsModule } from '@angular/forms';
 
+//update task component
 @Component({
   selector: 'app-task-update',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink,
+    FormsModule],
   template: `
     <div class="task-update-page">
       <h1 class="task-update-page__title">Task Update</h1>
       <h4 class="task-update-page__subtitle">
-        Update information about your selected task, including its
-        priority and status.
+        Update information about your selected task, including its priority and
+        status.
       </h4>
       @if (errorMessage) {
       <div class="message message--error">{{ errorMessage }}</div>
@@ -98,7 +99,7 @@ import { environment } from '../../../environments/environment';
             type="submit"
             class="task-update-page__btn"
             (click)="onSubmit()"
-            class="plant-details-page__btn"
+            class="task-update-page__btn"
             value="Submit"
           >
             Save Changes
@@ -106,7 +107,7 @@ import { environment } from '../../../environments/environment';
         </form>
       </div>
       <br />
-      <a class="task-update-page__link" routerLink="/tasks">Return</a>
+      <a class="task-update-page__link" routerLink="/tasks/update">Return</a>
     </div>
   `,
   styles: [
@@ -173,14 +174,22 @@ import { environment } from '../../../environments/environment';
       .task-update-page__link:hover {
         text-decoration: underline;
       }
+      .task-update-page__table-row:hover {
+        background-color: #6c757d;
+        color: white;
+      }
     `,
   ],
 })
+
+// export
 export class TaskUpdateComponent {
-  // _id: string;
   taskId: string;
   task: Task;
   errorMessage: string;
+  allTasks: Task[] = [];
+  tasks: Task[] = [];
+  filterType: string = '';
 
   taskForm: FormGroup = this.fb.group({
     title: [
@@ -208,6 +217,7 @@ export class TaskUpdateComponent {
       return;
     }
 
+    // get tasks
     this.taskService.getTask(this.taskId).subscribe({
       next: (task: Task) => {
         this.task = task;
@@ -221,13 +231,16 @@ export class TaskUpdateComponent {
   }
 
   onSubmit() {
+    // check if valid
     if (!this.taskForm.valid) {
-      this.errorMessage = 'Please fill in all required fields.';
+      this.errorMessage = 'Please fill in all fields.';
       return;
     }
     console.log('task-update: submit');
     if (this.taskForm.valid) {
       console.log('task-create: valid');
+
+      // declare and set updateTaskDTO
       const updateTaskDTO = {
         title: this.taskForm.controls['title'].value,
         status: this.taskForm.controls['status'].value,
@@ -236,10 +249,11 @@ export class TaskUpdateComponent {
 
       console.log('Update Task DTO:', updateTaskDTO);
 
+      // call task Service to update task
       this.taskService.updateTask(this.taskId, updateTaskDTO).subscribe({
         next: (result: any) => {
           console.log(`TaskId: ${result._id} ${result.message}`);
-          this.router.navigate(['/tasks']);
+          this.router.navigate(['/tasks/update']);
         },
         error: (err: any) => {
           console.error('Error updating task', err);

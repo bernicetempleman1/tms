@@ -26,13 +26,13 @@ export class ProjectService {
       `${environment.apiBaseUrl}/api/projects/${projectId}`
     );
   }
-  addProject(project: Project) {
-    return this.http.post<Project>(
+  
+  addProject(project: AddProjectDTO) {
+    return this.http.post<AddProjectDTO>(
       `${environment.apiBaseUrl}/api/projects`,
       project
     );
   }
-
 
   updateProject(project: UpdateProjectDTO, projectId: number) {
     return this.http.patch<Project>(`${environment.apiBaseUrl}/api/projects/${projectId}`, project);
@@ -45,5 +45,7 @@ export class ProjectService {
   }
 }
 
+export type AddProjectDTO = Omit<Project, '_id' | 'projectId' | 'dateCreated' |
+'dateModified'>;
 export type UpdateProjectDTO = Omit<Project, '_id' | 'projectId' | 'dateCreated' |
 'dateModified'>;

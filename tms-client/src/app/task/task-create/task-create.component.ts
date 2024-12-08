@@ -220,6 +220,7 @@ import { HttpClient } from '@angular/common/http';
     `,
   ],
 })
+//export
 export class TaskCreateComponent {
   errorMessage: string = '';
 
@@ -239,6 +240,7 @@ export class TaskCreateComponent {
     dueDate: [null, Validators.required],
     projectId: [null, Validators.required],
   });
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -254,10 +256,12 @@ export class TaskCreateComponent {
   }
 
   onSubmit() {
+    //check if not valid
     if (!this.taskForm.valid) {
       this.errorMessage = 'Please fill in all required fields.';
       return;
     }
+    //if valid
     if (this.taskForm.valid) {
       console.log('task-create: add task');
       const projectId = this.taskForm.controls['projectId'].value;
@@ -273,6 +277,7 @@ export class TaskCreateComponent {
       };
       console.log('task-create: add task');
 
+      //call task service to add task
       this.taskService.addTask(projectId, newTask).subscribe({
         next: (result: any) => {
           console.log(`Task created successfully: ${result.message}`);
@@ -287,3 +292,4 @@ export class TaskCreateComponent {
     }
   }
 }
+

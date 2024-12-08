@@ -192,6 +192,10 @@ import { Project, UpdateProjectDTO } from '../project';
       .project-details-page__link:hover {
         text-decoration: underline;
       }
+      .project-page__table-row:hover {
+        background-color: #6c757d;
+        color: white;
+      }
     `,
   ],
 })
@@ -243,6 +247,7 @@ export class ProjectReadByIdComponent {
       this.router.navigate(['/projects']);
       return;
     }
+    // call project service to get project for read only form
     this.projectService.getProject(this.projectId).subscribe({
       next: (project: Project) => {
         if (!project) {

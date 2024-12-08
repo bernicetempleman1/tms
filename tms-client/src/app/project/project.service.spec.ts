@@ -34,8 +34,8 @@ describe('ProjectService', () => {
 
   it('should retrieve all projects', () => {
     const dummyProjects: Project[] = [
-      { _id: '1', projectId: 1, name: 'Garden 1', description: 'Description 1' },
-      { _id: '2', projectId: 2, name: 'Garden 2', description: 'Description 2' },
+      { _id: '1', projectId: 1, name: 'Project 1', description: 'Description 1' },
+      { _id: '2', projectId: 2, name: 'Project 2', description: 'Description 2' },
   ];
 
   service.getProjects().subscribe(projects => {
@@ -49,7 +49,7 @@ describe('ProjectService', () => {
 });
 
 it('should retrieve a single project by ID', () => {
-  const dummyProject: Project = { _id: '1', projectId: 1, name: 'Garden 1', description: 'Description 1' };
+  const dummyProject: Project = { _id: '1', projectId: 1, name: 'Project 1', description: 'Description 1' };
   service.getProject(1).subscribe(project => {
     expect(project).toEqual(dummyProject);
   });
@@ -60,7 +60,7 @@ it('should retrieve a single project by ID', () => {
 });
 
 it('should add a new project', () => {
-  const newProject: Project = { _id: '3', projectId: 3, name: 'Garden 3', description: 'Description 3' };
+  const newProject: Project = { _id: '3', projectId: 3, name: 'Project 3', description: 'Description 3' };
   service.addProject(newProject).subscribe(project => {
     expect(project).toEqual(newProject);
   });
@@ -71,8 +71,8 @@ it('should add a new project', () => {
 });
 
 it('should update an existing project', () => {
-  const updateProjectDTO: UpdateProjectDTO = { name: 'Updated Garden', description: 'Updated Description' };
-  const updatedProject: Project = { _id: '1', projectId: 1, name: 'Updated Garden', description: 'Updated Description' };
+  const updateProjectDTO: UpdateProjectDTO = { name: 'Updated Project', description: 'Updated Description' };
+  const updatedProject: Project = { _id: '1', projectId: 1, name: 'Updated Project', description: 'Updated Description' };
   service.updateProject(updateProjectDTO, 1).subscribe(project => {
   expect(project).toEqual(updatedProject);
   });
