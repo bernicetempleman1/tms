@@ -10,11 +10,13 @@ import { Task } from '../task';
 import { RouterLink } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-task-search',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  providers: [DatePipe],
   template: `
     <div class="task-search-page">
       <h1 class="task-search-page__title">Search Tasks</h1>
@@ -22,6 +24,7 @@ import { debounceTime } from 'rxjs';
       <div class="task-search-page__filter-container">
         <input type="text" placeholder="Type here" [formControl]="textSearchControl" class="task-search-page__filter"/>
 
+        <p>Want to add or create a task?</p>
         <button class="task-search-page__button" routerLink="/tasks/create">
           Create Task
         </button>
@@ -48,7 +51,7 @@ import { debounceTime } from 'rxjs';
                 <td class="task-search-page__table-cell">{{ task.title }}</td>
                 <td class="task-search-page__table-cell">{{ task.status }}</td>
                 <td class="task-search-page__table-cell">{{ task.priority }}</td>
-                <td class="task-search-page__table-cell">{{ task.dueDate }}</td>
+                <td class="task-search-page__table-cell">{{ task.dueDate | date: 'short' }}</td>
                 <td class="task-search-page__table-cell">{{ task.projectId }}</td>
               </tr>
               }
@@ -63,111 +66,112 @@ import { debounceTime } from 'rxjs';
     </div>
   `,
   styles: `
-    .plant-page {
-      max-width: 80%;
-      margin: 0 auto;
+    .task-search-page {
       padding: 20px;
+      font-family: Arial, sans-serif;
+      color: #333;
+      background-color: #f9f9f9;
     }
-    .plant-page__title {
+
+    .task-search-page__title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #1e90ff;
       text-align: center;
-      color: #563d7c;
     }
-    .plant-page__table {
+
+    .task-search-page__filter-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+      align-items: center;
+    }
+
+    .task-search-page__filter {
+      width: 80%;
+      max-width: 400px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .task-search-page__button {
+      padding: 10px 15px;
+      font-size: 1rem;
+      color: white;
+      background-color: #563d7c;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease;
+    }
+
+    .task-search-page__button:hover {
+      background-color: #0077cc;
+    }
+
+    .message-alert {
+      color: #d9534f;
+      background-color: #f8d7da;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #f5c6cb;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .message-success {
+      color: #28a745;
+      background-color: #d4edda;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #c3e6cb;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .task-search-page__table {
       width: 100%;
       border-collapse: collapse;
+      margin-top: 20px;
     }
-    .plant-page__table-header {
+
+    .task-search-page__table-head {
       background-color: #FFE484;
       color: #000;
       border: 1px solid black;
       padding: 5px;
       text-align: left;
     }
-    .plant-page__table-cell {
+
+    .task-search-page__table-header {
+      padding: 10px;
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    .task-search-page__table-row {
+      border-bottom: 1px solid #ddd;
+    }
+
+    .task-search-page__table-cell {
       border: 1px solid black;
       padding: 5px;
       text-align: left;
     }
-    .plant-page__table-cell--functions {
+
+    .task-search-page__table-row:hover {
+      background-color: #f1f1f1;
+    }
+
+    .task-search-page__no-tasks {
+      font-size: 1.2rem;
+      color: #888;
       text-align: center;
-    }
-    .plant-page__icon-link {
-      cursor: pointer;
-      color: #6c757d;
-      text-decoration: none;
-      margin: 0 5px;
-    }
-    .plant-page__icon-link:hover {
-      color: #000;
-    }
-    .plant-page__no-plants {
-      text-align: center;
-      color: #6c757d;
-    }
-    .plant-page__button {
-      background-color: #563d7c;
-      color: #ﬀf;
-      border: none;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      margin: 10px 2px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-    .plant-page__button:hover {
-      background-color: #6c757d;
-    }
-    .message-alert {
-      padding: 15px;
-      margin-bottom: 20px;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      color: #a94442;
-      background-color: #f2dede;
-      border-color: #ebccd1;
-    }
-    .message-success {
-      padding: 15px;
-      margin-bottom: 20px;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      color: #3c763d;
-      background-color: #dﬀ0d8;
-      border-color: #d6e9c6;
-    }
-    .plant-page__filter-container {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-    .plant-page__filter {
-      flex: 1;
-      padding: 0.5rem;
-      margin-right: 0.5rem;
-    }
-    .plant-page__filter-button {
-      background-color: #563d7c;
-      color: #ﬀf;
-      border: none;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      margin: 10px 2px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-    .plant-page__filter-button:hover {
-      background-color: #6c757d;
-    }
-    .plant-page__highlight-info {
-      text-align: center;
-      color: #6c757d;
-      margin-bottom: 1rem;
+      margin-top: 20px;
     }
   `
 })
@@ -180,7 +184,7 @@ export class TaskSearchComponent {
   serverMessage: string | null = null;
   serverMessageType: 'success' | 'error' | null = null;
 
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService, private datePipe: DatePipe) {
     this.tasks = this.allTasks;
     
     this.taskService.getTasks().subscribe({
