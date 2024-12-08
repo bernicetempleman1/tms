@@ -112,7 +112,7 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
     </div>
   `,
   styles: [
-    `
+`
       .task-page {
         max-width: 80%;
         margin: 0 auto;
@@ -230,7 +230,7 @@ export class TaskMenuComponent {
   serverMessage: string | null = null;
   serverMessageType: 'success' | 'error' | null = null;
   txtSearchControl = new FormControl('');
-
+    
   constructor(private taskService: TaskService) {
     this.taskService.getTasks().subscribe({
       next: (tasks: Task[]) => {
