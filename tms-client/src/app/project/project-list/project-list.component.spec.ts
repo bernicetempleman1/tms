@@ -35,7 +35,6 @@ describe('ProjectListComponent', () => {
     fixture = TestBed.createComponent(ProjectListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
   });
 
   it('should create', () => {
@@ -46,11 +45,43 @@ describe('ProjectListComponent', () => {
     //Assign DOM to variable
     const compiled = fixture.nativeElement;
     //Select HTML element
-    const title = compiled.querySelector('h1');
+    const name = compiled.querySelector('h1');
 
     //Check text content of h1 element
-    expect(title).toBeTruthy();
-    expect(title.textContent).toContain('Project List');
+    expect(name).toBeTruthy();
+    expect(name.textContent).toContain('Project List');
+  });
+
+  it('should display records in the DOM', () => {
+    const mockProjects: Project[] = [
+      {
+        _id: '1',
+        name: 'Rose',
+        startDate: '2023-01-01',
+        projectId: 1,
+      },
+      {
+        _id: '2',
+        name: 'Tulip',
+        startDate: '2023-01-02',
+        projectId: 2,
+      }
+    ];
+
+    component.projects = mockProjects;
+    fixture.detectChanges(); // Trigger change detection
+
+    const projectRows = fixture.debugElement.queryAll(By.css('.project-page__table-body .project-page__table-row'));
+
+    expect(projectRows.length).toBeGreaterThan(0);
+  });
+
+  it('should display "No projects found" when there are no tasks', () => {
+    component.projects = [];
+    fixture.detectChanges();
+    const noProjectsMessage = fixture.debugElement.query(By.css('.project-page__no-projects'));
+    expect(noProjectsMessage).toBeTruthy();
+    expect(noProjectsMessage.nativeElement.textContent).toContain('No projects found');
   });
 
 });

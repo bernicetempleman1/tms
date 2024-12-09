@@ -62,5 +62,30 @@ describe('ProjectUpdateComponent', () => {
     expect(title).toBeTruthy();
     expect(title.textContent).toContain('Project Update');
   });
+
+   //should have a valid form when all fields are filled correctly
+   it('should have a valid form when all fields are filled correctly', () => {
+    component.projectForm.controls['name'].setValue('Test Plant');
+    component.projectForm.controls['description'].setValue('High       ');
+
+    expect(component.projectForm.valid).toBeTrue();
+  });
+
+  // should handle error on form submission failure
+  it('should handle error on form submission failure', fakeAsync(() => {
+    spyOn(projectService, 'updateProject').and.returnValue(
+      throwError('Error updating project')
+    );
+    spyOn(console, 'error');
+    component.projectForm.controls['name'].setValue('Test Plant');
+    component.projectForm.controls['description'].setValue('High      ');
+    component.onSubmit();
+    tick();
+    expect(projectService.updateProject).toHaveBeenCalled();
+    expect(console.error).toHaveBeenCalledWith(
+      'Error updating project',
+      'Error updating project'
+    );
+  }));
 });
 
