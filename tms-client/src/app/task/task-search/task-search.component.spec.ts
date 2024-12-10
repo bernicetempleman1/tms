@@ -56,15 +56,15 @@ describe('TaskSearchComponent', () => {
         projectId: 1,
       },
     ];
-  
+
     component.tasks = mockTasks;
     component.allTasks = mockTasks;
     fixture.detectChanges();
-  
+
     component.textSearchControl.setValue('github');
     tick(500);
     fixture.detectChanges();
-  
+
     expect(component.tasks.length).toBe(1);
     expect(component.tasks[0].title).toBe('Complete github repository setup');
   }));
@@ -95,15 +95,15 @@ describe('TaskSearchComponent', () => {
         projectId: 1,
       },
     ];
-  
+
     component.tasks = mockTasks;
     component.allTasks = mockTasks;
     fixture.detectChanges();
-  
+
     component.textSearchControl.setValue('Complete');
     tick(500);
     fixture.detectChanges();
-  
+
     expect(component.tasks.length).toBe(2);
   }));
 
@@ -133,15 +133,15 @@ describe('TaskSearchComponent', () => {
         projectId: 1,
       },
     ];
-  
+
     component.tasks = mockTasks;
     component.allTasks = mockTasks;
     fixture.detectChanges();
-  
+
     component.textSearchControl.setValue('Nonexistent');
     tick(500);
     fixture.detectChanges();
-  
+
     expect(component.tasks.length).toBe(0);
   }));
 });
