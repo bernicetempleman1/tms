@@ -53,7 +53,7 @@ router.delete("/:projectId", async (req, res, next) => {
   }
 });
 
-// Create a project: BT, MH
+// Create a project: BT, MS
 router.post("/", async (req, res, next) => {
   try {
     const valid = validateAddProject(req.body);
@@ -73,7 +73,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-// Update a project: BT, MH
+// Update a project: BT, MS
 router.patch("/:projectId", async (req, res, next) => {
   try {
     const project = await Project.findOne({ projectId: req.params.projectId });
