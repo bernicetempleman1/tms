@@ -1,3 +1,7 @@
+// Developer: Meher Salim
+// File: task-search.spec.js
+// Description: API tests for task search
+
 const mongoose = require('mongoose');
 const request = require("supertest");
 const express = require("express");

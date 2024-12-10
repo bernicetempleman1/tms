@@ -33,58 +33,53 @@ import { AddProjectDTO } from '../project';
       <div class="project-add-page__card">
         <form [formGroup]="projectForm" class="project-add-page__form">
           <div class="project-add-page__form-group">
-            <label for="name" class="project-add-page__form-label"
-              >Project Name</label
-            >
+            <label for="name" class="project-add-page__form-label">
+              Project Name
+            </label>
             <input
               type="text"
               id="name"
               class="project-add-page__form-control"
-              formControlName="name"
-            />
+              formControlName="name"/>
           </div>
 
           <div class="project-add-page__form-group">
-            <label for="description" class="project-add-page__form-label"
-              >Project Description</label
-            >
+            <label for="description" class="project-add-page__form-label">
+              Project Description
+            </label>
             <textarea
               id="description"
               rows="10"
               class="project-add-page__form-control"
-              formControlName="description"
-            ></textarea>
+              formControlName="description"></textarea>
           </div>
 
           <div class="project-add-page__form-group">
-            <label for="startDate" class="project-add-page__form-label"
-              >Start Date</label
-            >
+            <label for="startDate" class="project-add-page__form-label">
+              Start Date
+            </label>
             <input
               type="datetime-local"
               id="startDate"
               class="project-add-page__formcontrol"
-              formControlName="startDate"
-            />
+              formControlName="startDate"/>
           </div>
 
           <div class="project-add-page__form-group">
-            <label for="endDate" class="project-add-page__form-label"
-              >End Date</label
-            >
+            <label for="endDate" class="project-add-page__form-label">
+              End Date
+            </label>
             <input
               type="datetime-local"
               id="endDate"
               class="project-add-page__formcontrol"
-              formControlName="endDate"
-            />
+              formControlName="endDate"/>
           </div>
 
           <button
             type="submit"
             class="project-add-page__btn"
-            (click)="onSubmit()"
-          >
+            (click)="onSubmit()">
             Add Project
           </button>
         </form>
@@ -159,6 +154,7 @@ import { AddProjectDTO } from '../project';
     `,
   ],
 })
+
 export class ProjectCreateComponent {
   errorMessage: string = '';
   projectForm: FormGroup = this.fb.group({
@@ -168,7 +164,7 @@ export class ProjectCreateComponent {
     ],
     description: [
       null,
-      Validators.compose([ Validators.minLength(3)]),
+      Validators.compose([ Validators.minLength(10)]),
     ],
     startDate: [null],
     endDate: [null],

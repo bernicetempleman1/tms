@@ -13,7 +13,7 @@ const request = require('supertest');
 jest.mock('../../../src/models/project');
 
 //Test suite for project-read-by-id API
-describe('Read Project By Id API', () => {
+describe('Project API', () => {
   describe('GET /api/projects/:projectId', () => {
 
     it('should get a project by Id', async () => {
@@ -47,3 +47,4 @@ describe('Read Project By Id API', () => {
     expect(response.status).toBe(404);
   });
 });
+

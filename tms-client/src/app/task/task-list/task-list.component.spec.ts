@@ -10,7 +10,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Task } from '../task';
 import { By } from '@angular/platform-browser';
-import { of, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 
 describe('TaskListComponent', () => {
   let component: TaskListComponent;
