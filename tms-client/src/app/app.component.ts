@@ -130,6 +130,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      min-width: 200vh;
     }
 
     .app__side-menu {
@@ -199,6 +200,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background-size: auto;
     }
 
     .app__header-content {
@@ -233,6 +235,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
       border: 0;
       height: 1px;
       background: #e0e0e0;
+      background-size: auto;
     }
   `,
 })
