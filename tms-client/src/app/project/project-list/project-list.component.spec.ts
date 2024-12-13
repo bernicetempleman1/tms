@@ -1,11 +1,6 @@
-/**
- * Author: Bernice Templeman
- * Date: 11 November 2024
- * File: project-list.component.ts
- * Description:  project menu
- *
- */
-//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172
+//Leah Harris
+//project-list component tests
+//description: Test file for listing all projects component
 
 import { ProjectListComponent } from './project-list.component';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
@@ -13,7 +8,6 @@ import { ProjectService } from '../project.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Project } from '../project';
-import { of, throwError } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
 describe('ProjectListComponent', () => {
@@ -53,35 +47,49 @@ describe('ProjectListComponent', () => {
   });
 
   it('should display records in the DOM', () => {
+    //Create a mock array for testing
     const mockProjects: Project[] = [
       {
-        _id: '1',
-        name: 'Rose',
-        startDate: '2023-01-01',
         projectId: 1,
+        name: 'Mock project 1',
+        description: 'Description of the first mock project',
+        startDate: '2023-09-04T21:39:36.605Z',
+        endDate: '2025-09-04T21:39:36.605Z'
       },
       {
-        _id: '2',
-        name: 'Tulip',
-        startDate: '2023-01-02',
-        projectId: 2,
+        projectId: 1,
+        name: 'Mock project 2',
+        description: 'Description of the second mock project',
+        startDate: '2023-09-04T21:39:36.605Z',
+        endDate: '2025-09-04T21:39:36.605Z'
       }
     ];
 
+    //Assign mockProjects array to the component
     component.projects = mockProjects;
     fixture.detectChanges(); // Trigger change detection
 
+    //Select the table body and row elements
     const projectRows = fixture.debugElement.queryAll(By.css('.project-page__table-body .project-page__table-row'));
 
+    //Expect table rows to be greater than zero
     expect(projectRows.length).toBeGreaterThan(0);
   });
 
-  it('should display "No projects found" when there are no tasks', () => {
+  it('should display "No Projects Found" when there are no projects', () => {
+    //Create empty array for projects in the component
     component.projects = [];
-    fixture.detectChanges();
-    const noProjectsMessage = fixture.debugElement.query(By.css('.project-page__no-projects'));
-    expect(noProjectsMessage).toBeTruthy();
-    expect(noProjectsMessage.nativeElement.textContent).toContain('No projects found');
-  });
+    //Select the DOM
+    const compiled = fixture.nativeElement;
 
+    //trigger change detection
+    fixture.detectChanges();
+
+    //Select the p element
+    const noProjectsMessage = compiled.querySelector('p');
+
+    //Compare the expected results
+    expect(noProjectsMessage).toBeTruthy();
+    expect(noProjectsMessage.textContent).toContain('No Projects Found');
+  });
 });
