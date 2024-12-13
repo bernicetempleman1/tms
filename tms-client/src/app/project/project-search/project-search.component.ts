@@ -1,11 +1,7 @@
-/**
- * Author: Bernice Templeman
- * Date: 11 November 2024
- * File: project-menu.component.ts
- * Description:  project menu
- *
- */
-//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172
+//Leah Harris
+//file: project-search.component.ts
+//description: Component to search and filter projects
+
 import { Component } from '@angular/core';
 import { ProjectService } from '../project.service';
 import { Project } from '../project';
@@ -26,64 +22,41 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
   ],
 
   template: `
-    <div class="project-page">
-      <h1 class="project-page__title">Project Search</h1>
+   <div class="project-page">
+     <h1 class="project-page__title">Project Search</h1>
 
-      <div class="project-page__search-container">
-        <input
-          type="text"
-          placeholder="Search projects by name"
-          [formControl]="txtSearchControl"
-          class="project-page__search"
-        />
-      </div>
+     <div class="project-page__search-container">
+       <input type="text" placeholder="Search project by name" [formControl]="txtSearchControl" class="project-page__search"/>
+     </div>
 
-      <div class="project-page__highlight-info">
-        <p>
-          Rows highlighted in green indicate projects that were created within
-          the last 30 days.
-        </p>
-      </div>
-
-      @if (serverMessage) {
-      <div
-        [ngClass]="{
-          'message-alert': serverMessageType === 'error',
-          'message-success': serverMessageType === 'success'
-        }"
-      >
-        {{ serverMessage }}
-      </div>
-      } @if (projects.length > 0) {
+     @if(projects && projects.length > 0) {
       <table class="project-page__table">
-        <thead class="project-page__table-head">
-          <tr class="project-page__table-row">
-            <th class="project-page__table-header">Project ID</th>
-            <th class="project-page__table-header">Name</th>
-            <th class="project-page__table-header">Description</th>
-            <th class="project-page__table-header">Date Created</th>
-          </tr>
-        </thead>
-        <tbody class="project-page__table-body">
-          @for (project of projects; track project) {
-          <tr
-            class="project-page__table-row"
-            [appHighlightRecent]="project.dateCreated ?? ''"
-          >
-            <td class="project-page__table-cell">{{ project.projectId }}</td>
-            <td class="project-page__table-cell">{{ project.name }}</td>
-            <td class="project-page__table-cell">{{ project.description }}</td>
-            <td class="project-page__table-cell">{{ project.dateCreated }}</td>
-          </tr>
-          }
-        </tbody>
-      </table>
-      } @else {
-      <p class="project-page__no-projects">
-        No projects found, consider adding one...
-      </p>
-      }
-    </div>
+       <thead class="project-page__table-head">
+         <tr class="project-page__table-row">
+           <th class="project-page__header">Project ID</th>
+           <th class="project-page__header">Name</th>
+           <th class="project-page__header">Description</th>
+           <th class="project-page__header">Start Date</th>
+           <th class="project-page__header">End Date</th>
+         </tr>
+       </thead>
+
+     <tbody class="project-page__table-body">
+       @for(project of projects; track project) {
+         <tr class="project-page__table-row">
+          <td class="project-page__table-cell">{{ project.projectId }}</td>
+          <td class="project-page__table-cell">{{ project.name }}</td>
+          <td class="project-page__table-cell">{{ project.description }}</td>
+          <td class="project-page__table-cell">{{ project.startDate }}</td>
+          <td class="project-page__table-cell">{{ project.endDate }}</td>
+         </tr>
+       }
+     </tbody>
+     </table>
+    } @else {
+     <p>No Projects Found</p>
+    }
+   </div>
   `,
   styles: [
     `
@@ -100,7 +73,7 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
         width: 100%;
         border-collapse: collapse;
       }
-      .project-page__table-header {
+      .project-page__table-head {
         background-color: #ffe484;
         color: #000;
         border: 1px solid black;
@@ -113,9 +86,7 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
         padding: 5px;
         text-align: left;
       }
-      .project-page__table-cell--functions {
-        text-align: center;
-      }
+
       .project-page__icon-link {
         cursor: pointer;
         color: #6c757d;
@@ -145,25 +116,7 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
       .project-page__button:hover {
         background-color: #6c757d;
       }
-      .message-alert {
-        padding: 15px;
-        margin-bottom: 20px;
-        border: 1px solid transparent;
-        border-radius: 4px;
-        color: #a94442;
 
-        background-color: #f2dede;
-        border-color: #ebccd1;
-      }
-      .message-success {
-        padding: 15px;
-        margin-bottom: 20px;
-        border: 1px solid transparent;
-        border-radius: 4px;
-        color: #3c763d;
-        background-color: #dff0d8;
-        border-color: #d6e9c6;
-      }
       .project-page__search-container {
         display: flex;
         align-items: center;
@@ -182,13 +135,16 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
   ],
 })
 export class ProjectSearchComponent {
+  //Array for filtered projects
   projects: Project[] = [];
-  allProjects: Project[] = [];
-  serverMessage: string | null = null;
-  serverMessageType: 'success' | 'error' | null = null;
+  //array for all projects
+  allProjects: Project [] = [];
 
+
+  //Create a form instance
   txtSearchControl = new FormControl('');
 
+  //Inject project service and fetch data
   constructor(private projectService: ProjectService) {
     this.projectService.getProjects().subscribe({
       next: (projects: Project[]) => {
@@ -196,52 +152,18 @@ export class ProjectSearchComponent {
         this.allProjects = projects;
         console.log(`Projects: ${JSON.stringify(this.projects)}`);
       },
+      //Log error for failed request
       error: (err: any) => {
         console.error(`Error occurred while retrieving projects: ${err}`);
       },
     });
 
-    this.txtSearchControl.valueChanges
-      .pipe(debounceTime(500))
-      .subscribe((val) => this.filterProjects(val || ''));
+    //Get latest value of textSearchControl with .5 second delay and call the filterProjects method
+    this.txtSearchControl.valueChanges.pipe(debounceTime(500)).subscribe(val=> this.filterProjects(val || ''));
   }
 
+  //Method to filter projects by name(case-insensitive)
   filterProjects(name: string) {
-    this.projects = this.allProjects.filter((p) =>
-      p.name.toLowerCase().includes(name.toLowerCase())
-    );
-  }
-
-  // delete project
-  deleteProject(projectId: number) {
-    if (!confirm('Are you sure you want to delete this project?')) {
-      return;
-    }
-
-    this.projectService.deleteProject(projectId).subscribe({
-      next: () => {
-        console.log(`Project with ID ${projectId} deleted successfully`);
-        this.projects = this.projects.filter((g) => g.projectId !== projectId);
-        this.serverMessageType = 'success';
-        this.serverMessage = `Project with ID ${projectId} deleted successfully`;
-        this.clearMessageAfterDelay();
-      },
-      error: (err: any) => {
-        console.error(
-          `Error occurred while deleting project with ID ${projectId}: ${err}`
-        );
-        this.serverMessageType = 'error';
-        this.serverMessage = `Error occurred while deleting project with ID ${projectId}. Please
-  try again later.`;
-        this.clearMessageAfterDelay();
-      },
-    });
-  }
-
-  private clearMessageAfterDelay() {
-    setTimeout(() => {
-      this.serverMessage = null;
-      this.serverMessageType = null;
-    }, 3000);
+    this.projects = this.allProjects.filter(g => g.name.toLowerCase().includes(name.toLowerCase()));
   }
 }
