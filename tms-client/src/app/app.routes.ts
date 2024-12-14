@@ -25,6 +25,7 @@ import { TaskUpdateMenuComponent } from './task/task-update-menu/task-update-men
 import { TaskUpdateComponent } from './task/task-update/task-update.component';
 import { TaskDeleteComponent } from './task/task-delete/task-delete.component';
 import { TaskReadByIdComponent } from './task/task-read-by-id/task-read-by-id.component';
+import { TaskReadMenuComponent } from './task/task-read-menu/task-read-menu.component';
 import { TaskListComponent } from './task/task-list/task-list.component';
 import { TaskSearchComponent } from './task/task-search/task-search.component';
 
@@ -58,8 +59,12 @@ export const routes: Routes = [
     component: TaskListComponent,
   },
   {
-    path: 'tasks/read',
+    path: 'tasks/read/details',
     component: TaskReadByIdComponent,
+  },
+  {
+    path: 'tasks/read',
+    component: TaskReadMenuComponent,
   },
   {
     path: 'tasks/search',
