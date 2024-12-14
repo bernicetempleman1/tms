@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { debounceTime, map, of } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-project-delete',
@@ -59,7 +60,7 @@ import { debounceTime, map, of } from 'rxjs';
             <td class="project-page__table-cell">{{ project.projectId }}</td>
             <td class="project-page__table-cell">{{ project.name }}</td>
             <td class="project-page__table-cell">{{ project.description }}</td>
-            <td class="project-page__table-cell">{{ project.dateCreated }}</td>
+            <td class="project-page__table-cell">{{ project.dateCreated | date : "short"}}</td>
             <td
               class="project-page__table-cell project-page__table-cell--functions"
             >
@@ -113,7 +114,7 @@ import { debounceTime, map, of } from 'rxjs';
       }
       .project-page__icon-link {
         cursor: pointer;
-        color: #6c757d;
+        color: green;
         text-decoration: none;
         margin: 0 5px;
       }
