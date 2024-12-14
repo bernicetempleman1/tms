@@ -253,10 +253,10 @@ export class AppComponent {
 
   // Array to hold the task management links in the side menu. Must be an
   TaskManagement = [
-    { name: 'Create Task', url: '/tasks/create' },
+    { name: 'Create a Task', url: '/tasks/create' },
     { name: 'Read a Task', url: '/tasks/read' },
-    { name: 'Update Task', url: '/tasks/update' },
-    { name: 'Delete Task', url: '/tasks/delete' },
+    { name: 'Update Tasks', url: '/tasks/update' },
+    { name: 'Delete Tasks', url: '/tasks/delete' },
     { name: 'List All Tasks', url: '/tasks/list' },
     { name: 'Search Tasks', url: '/tasks/search' },
     // Add more reports as needed
@@ -264,16 +264,16 @@ export class AppComponent {
 
   // Array to hold the task management links in the side menu. Must be an
   ProjectManagement = [
-    { name: 'Create Project', url: '/projects/create' },
+    { name: 'Create a Project', url: '/projects/create' },
     { name: 'Read a Project', url: '/projects/read' },
-    { name: 'Update Project', url: '/projects/update' },
-    { name: 'Delete Project', url: '/projects/delete' },
-    { name: 'List All Project', url: '/projects/list' },
-    { name: 'Search Project', url: '/projects/search' },
+    { name: 'Update Projects', url: '/projects/update' },
+    { name: 'Delete Projects', url: '/projects/delete' },
+    { name: 'List All Projects', url: '/projects/list' },
+    { name: 'Search Projects', url: '/projects/search' },
     // Add more reports as needed
   ];
 
-  // Array to hold the sales reports links in the side menu. These links are visible to all users
+  // Array to hold reports links in the side menu. These links are visible to all users
   taskReports = [
     { name: 'Tasks by Priority', url: '/reports/tasks/tasks-by-priority' },
     // Add more reports as needed
