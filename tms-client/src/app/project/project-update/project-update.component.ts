@@ -1,11 +1,13 @@
+// Developer: Meher Salim
+// File: project-update.component.ts
+// Description: Update project details
+// Credits:
+//    Lean, Mean, and Pragmatic - A Guide to Full-Stack JavaScript Development
+//    Bernice Templeman
+
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProjectService } from '../project.service';
 import { Project, UpdateProjectDTO } from '../project';
@@ -25,35 +27,15 @@ import { Project, UpdateProjectDTO } from '../project';
       <div class="project-details-page__card">
         <form [formGroup]="projectForm" class="project-details-page__form">
           <div class="project-details-page__form-group">
-            <label for="name" class="project-details-page__form-label"
-              >Project Name</label
-            >
-            <input
-              type="text"
-              id="name"
-              class="project-details-page__form-control"
-              formControlName="name"
-            />
+            <label for="name" class="project-details-page__form-label">Project Name</label>
+            <input type="text" id="name" class="project-details-page__form-control" formControlName="name"/>
           </div>
 
           <div class="project-details-page__form-group">
-            <label for="description" class="project-details-page__form-label"
-              >Project Description</label
-            >
-            <textarea
-              id="description"
-              rows="10"
-              class="project-details-page__form-control"
-              formControlName="description"
-            ></textarea>
+            <label for="description" class="project-details-page__form-label">Project Description</label>
+            <textarea id="description" rows="10" class="project-details-page__form-control" formControlName="description"></textarea>
           </div>
-          <button
-            type="submit"
-            class="project-details-page__btn"
-            (click)="onSubmit()"
-          >
-            Save Changes
-          </button>
+          <button type="submit" class="project-details-page__btn" (click)="onSubmit()">Save Changes</button>
         </form>
       </div>
       <br />

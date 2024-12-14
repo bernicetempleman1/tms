@@ -68,8 +68,12 @@ router.post("/", async (req, res, next) => {
       projectId: newProject.projectId,
     });
   } catch (err) {
-    console.error(`Error while creating project: ${err}`);
-    next(err);
+    if (err.code === 11000) {
+      next(createError(400, "Duplicate project name"));
+    } else {
+      console.error(`Error while creating project: ${err}`);
+      next(createError(500, "Internal Server Error"));
+    }
   }
 });
 

@@ -19,11 +19,7 @@ describe('TaskListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule, 
-        RouterTestingModule, 
-        TaskListComponent
-      ], //Import TaskListComponent
+      imports: [ HttpClientTestingModule, RouterTestingModule, TaskListComponent ],
       providers: [TaskService]
     }). compileComponents();
 
@@ -32,11 +28,12 @@ describe('TaskListComponent', () => {
     taskService = TestBed.inject(TaskService);
   });
 
-  // Create a new TaskListComponent
+  // Test if the component has been created
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
+  // Test if records are displayed in the DOM
   it('should display records in the DOM', () => {
     const mockTasks: Task[] = [
       { 
@@ -65,6 +62,7 @@ describe('TaskListComponent', () => {
     expect(taskRows.length).toBeGreaterThan(0);
   });
 
+  // Test error handling when fetching tasks
   it('should handle error when fetching tasks', () => {
     spyOn(taskService, 'getTasks').and.returnValue(throwError('Error fetching plants'));
 
@@ -73,6 +71,7 @@ describe('TaskListComponent', () => {
     expect(component.tasks.length).toBe(0);
   });
 
+  // Test if "No tasks found" is displayed when there are no tasks
   it('should display "No tasks found" when there are no tasks', () => {
     component.tasks = [];
     fixture.detectChanges();
@@ -80,5 +79,37 @@ describe('TaskListComponent', () => {
     const noTasksMessage = fixture.debugElement.query(By.css('.task-page__no-tasks'));
     expect(noTasksMessage).toBeTruthy();
     expect(noTasksMessage.nativeElement.textContent).toContain('No tasks found');
+  });
+
+  // Test if tasks are displayed with formatted due dates
+  it('should display tasks with formatted due dates', () => {
+    const mockTasks: Task[] = [
+      { 
+        _id: '1', 
+        title: 'Rose', 
+        priority: 'Flower', 
+        status: 'Planted', 
+        dueDate: '2023-01-01', 
+        projectId: 1, 
+      },
+      { 
+        _id: '2', 
+        title: 'Tulip', 
+        priority: 'Flower', 
+        status: 'Planted', 
+        dueDate: '2023-01-02', 
+        projectId: 1, 
+      }
+    ];
+
+    component.tasks = mockTasks;
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const dueDateCells = compiled.querySelectorAll('.task-page__table-cell:nth-child(4)');
+
+    expect(dueDateCells.length).toBe(2);
+    expect(dueDateCells[0].textContent).toContain('1/1/23');
+    expect(dueDateCells[1].textContent).toContain('1/2/23');
   });
 });

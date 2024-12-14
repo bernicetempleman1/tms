@@ -1,3 +1,9 @@
+// Developer: Meher Salim
+// File: project-update.component.spec.ts
+// Description: Update project details
+// Credits:
+//    Lean, Mean, and Pragmatic - A Guide to Full-Stack JavaScript Development
+//    Bernice Templeman
 
 import {
   ComponentFixture,

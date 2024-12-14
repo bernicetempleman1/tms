@@ -5,13 +5,13 @@
 
 import { Component } from '@angular/core';
 import { TaskService } from '../task.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Task } from '../task';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DatePipe],
   template: `
     <div class="task-page">
       <h1 class="task-page__title">Task List</h1>
@@ -23,6 +23,7 @@ import { Task } from '../task';
             <th class="task-page__table-header">Status</th>
             <th class="task-page__table-header">Priority</th>
             <th class="task-page__table-header">Due Date</th>
+            <th class="task-page__table-header">Task ID</th>
             <th class="task-page__table-header">Project ID</th>
           </tr>
         </thead>
@@ -31,7 +32,8 @@ import { Task } from '../task';
             <td class="task-page__table-cell">{{ task.title }}</td>
             <td class="task-page__table-cell">{{ task.status }}</td>
             <td class="task-page__table-cell">{{ task.priority }}</td>
-            <td class="task-page__table-cell">{{ task.dueDate }}</td>
+            <td class="task-page__table-cell">{{ task.dueDate | date: 'shortDate' }}</td>
+            <td class="task-page__table-cell">{{ task._id }}</td>
             <td class="task-page__table-cell">{{ task.projectId }}</td>
           </tr>
         </tbody>

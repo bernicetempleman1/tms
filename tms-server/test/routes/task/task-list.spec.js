@@ -1,6 +1,7 @@
 // Developer: Meher Salim
 // File: task-list.spec.js
 // Description: API tests to list all tasks
+// Credits: Lean, Mean, and Pragmatic - A Guide to Full-Stack JavaScript Development
 
 const request = require('supertest');
 const app = require('../../../src/app/app');

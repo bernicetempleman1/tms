@@ -1,6 +1,7 @@
 // Developer: Meher Salim
 // File: project-update.spec.js
 // Description: Unit testing for creating a new project
+// Credits: Lean, Mean, and Pragmatic - A Guide to Full-Stack JavaScript Development
 
 const request = require('supertest');
 const app = require('../../../src/app/app');
