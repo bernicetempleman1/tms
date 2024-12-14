@@ -92,7 +92,6 @@ import { FormsModule } from '@angular/forms';
               <th class="task-page__table-header">Priority</th>
               <th class="task-page__table-header">Due Date</th>
               <th class="task-page__table-header">Project</th>
-              <th class="task-page__table-header">Task Id</th>
             </tr>
           </thead>
           <tbody class="task-page__table-body">
@@ -108,7 +107,6 @@ import { FormsModule } from '@angular/forms';
                 {{ task.dueDate | date : 'short' }}
               </td>
               <td class="task-page__table-cell">{{ task.projectId }}</td>
-              <td class="task-page__table-cell">{{ task._id }}</td>
             </tr>
             }
           </tbody>
