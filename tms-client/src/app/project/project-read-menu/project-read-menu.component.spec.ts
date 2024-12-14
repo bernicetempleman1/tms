@@ -40,7 +40,7 @@ describe('ProjectMenuComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display title "Project Details Menu"', () => {
+  it('should display title "Project Read Menu"', () => {
     //Assign DOM to variable
     const compiled = fixture.nativeElement;
     //Select HTML element
@@ -48,6 +48,6 @@ describe('ProjectMenuComponent', () => {
 
     //Check text content of h1 element
     expect(title).toBeTruthy();
-    expect(title.textContent).toContain('Project Details Menu');
+    expect(title.textContent).toContain('Project Read Menu');
   });
 });

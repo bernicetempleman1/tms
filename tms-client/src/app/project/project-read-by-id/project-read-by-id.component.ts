@@ -26,7 +26,7 @@ import { DatePipe } from '@angular/common';
   imports: [ReactiveFormsModule, CommonModule, RouterLink],
   template: `
     <div class="project-details-page">
-      <h1 class="project-details-page__title">Project Details</h1>
+      <h1 class="project-details-page__title">Project Read Details</h1>
       <h4 class="project-details-page__subtitle">
         Explore the detailed information about your selected project.
       </h4>

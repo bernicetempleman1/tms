@@ -6,8 +6,6 @@
  * Description: Tests for Display a project
  *
  */
-//Reference: Krasso, R. (2024). Lean, MEAN, and Pragmatic: A Guide to Full-Stack JavaScript Development (page 172)
-
 import {
   ComponentFixture,
   TestBed,
@@ -86,7 +84,7 @@ describe('ProjectReadByIdComponent', () => {
   });
 
   // should display title
-  it('should display title "Project Details"', () => {
+  it('should display title "Project Read Details"', () => {
     //Assign DOM to variable
     const compiled = fixture.nativeElement;
     //Select HTML element
@@ -94,6 +92,6 @@ describe('ProjectReadByIdComponent', () => {
 
     //Check text content of h1 element
     expect(title).toBeTruthy();
-    expect(title.textContent).toContain('Project Details');
+    expect(title.textContent).toContain('Project Read Details');
   });
 });

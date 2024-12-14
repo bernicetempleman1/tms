@@ -24,7 +24,7 @@ import { DatePipe } from '@angular/common';
 
   template: `
     <div class="project-page">
-      <h1 class="project-page__title">Project Details Menu</h1>
+      <h1 class="project-page__title">Project Read Menu</h1>
 
       <div class="project-page__search-container">
         <input
