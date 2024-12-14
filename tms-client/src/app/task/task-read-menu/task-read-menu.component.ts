@@ -25,10 +25,12 @@ import { FormsModule } from '@angular/forms';
     <div class="task-page">
       <h1 class="task-page__title">Task Read Menu</h1>
 
+      <button class="task-page__button" routerLink="/tasks/read/details">Search and Read Task by Task Id</button>
+
       <div class="task-page__filter-container">
         <input
           type="text"
-          placeholder="Type here"
+          placeholder="Filter by task name"
           [formControl]="textSearchControl"
           class="task-page__filter"
         />
@@ -60,7 +62,7 @@ import { FormsModule } from '@angular/forms';
                 <td class="task-page__table-cell">{{ task._id }}</td>
                 <td class="task-page__table-cell task-page__table-cell--functions">
                 <a
-                  routerLink="/tasks/read/details"
+                  routerLink="/tasks/read/{{ task._id }}"
                   class="task-page__iconlink"
                   ><i class="fas fa-sticky-note" ></i
                 ></a>
