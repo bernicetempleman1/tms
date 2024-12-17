@@ -33,6 +33,9 @@ import { TaskSearchComponent } from './task/task-search/task-search.component';
 import { TaskReportComponent } from './report/task/task-report/task-report.component';
 import { ProjectReportComponent } from './report/project/project-report/project-report.component';
 
+import { SupportComponent } from './support/support.component';4
+import { FaqComponent } from './faq/faq.component';
+
 
 export const routes: Routes = [
   {
@@ -123,5 +126,13 @@ export const routes: Routes = [
   {
     path: 'reports/project/project-report',
     component: ProjectReportComponent,
+  },
+  {
+    path: 'support',
+    component: SupportComponent,
+  },
+  {
+    path: 'faq',
+    component: FaqComponent,
   },
 ];
