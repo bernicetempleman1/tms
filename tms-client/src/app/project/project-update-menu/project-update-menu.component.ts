@@ -32,12 +32,7 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
       <h1 class="project-page__title">Project Update Menu</h1>
 
       <div class="project-page__search-container">
-        <input
-          type="text"
-          placeholder="Search projects by name"
-          [formControl]="txtSearchControl"
-          class="project-page__search"
-        />
+        <input type="text" placeholder="Search projects by name" [formControl]="txtSearchControl" class="project-page__search"/>
       </div>
 
       <div class="project-page__highlight-info">
@@ -49,11 +44,7 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
 
       @if (serverMessage) {
       <div
-        [ngClass]="{
-          'message-alert': serverMessageType === 'error',
-          'message-success': serverMessageType === 'success'
-        }"
-      >
+        [ngClass]="{ 'message-alert': serverMessageType === 'error', 'message-success': serverMessageType === 'success' }">
         {{ serverMessage }}
       </div>
       } @if (projects.length > 0) {
@@ -69,22 +60,13 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
         </thead>
         <tbody class="project-page__table-body">
           @for (project of projects; track project) {
-          <tr
-            class="project-page__table-row"
-            [appHighlightRecent]="project.dateCreated ?? ''"
-          >
+          <tr class="project-page__table-row" [appHighlightRecent]="project.dateCreated ?? ''">
             <td class="project-page__table-cell">{{ project.projectId }}</td>
             <td class="project-page__table-cell">{{ project.name }}</td>
             <td class="project-page__table-cell">{{ project.description }}</td>
-            <td class="project-page__table-cell">{{ project.dateCreated }}</td>
-            <td
-              class="project-page__table-cell task-page__table-cell--functions"
-            >
-              <a
-                routerLink="/projects/update/{{ project.projectId }}"
-                class="project-page__iconlink"
-                ><i class="fas fa-edit"></i
-              ></a>
+            <td class="project-page__table-cell">{{ project.dateCreated | date : "shortDate" }}</td>
+            <td class="project-page__table-cell task-page__table-cell--functions">
+              <a routerLink="/projects/update/{{ project.projectId }}" class="project-page__iconlink"><i class="fas fa-edit"></i></a>
             </td>
           </tr>
           }

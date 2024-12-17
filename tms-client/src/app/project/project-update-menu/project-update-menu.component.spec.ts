@@ -12,9 +12,19 @@ import { ProjectUpdateMenuComponent } from './project-update-menu.component';
 import { ProjectService } from '../project.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Project } from '../project';
 import { of, throwError } from 'rxjs';
-import { By } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+
+const mockProjects = [
+  { projectId: 1, name: 'Project Alpha', description: 'First project', dateCreated: '2023-12-01' },
+  { projectId: 2, name: 'Project Beta', description: 'Second project', dateCreated: '2023-11-20' },
+];
+
+class MockProjectService {
+  getProjects() {
+    return of(mockProjects);
+  }
+}
 
 describe('ProjectMenuComponent', () => {
   let component: ProjectUpdateMenuComponent;
@@ -23,12 +33,8 @@ describe('ProjectMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
-        ProjectUpdateMenuComponent,
-      ],
-      providers: [ProjectService],
+      imports: [ HttpClientTestingModule, RouterTestingModule, ReactiveFormsModule ],
+      providers: [{ provide: ProjectService, useClass: MockProjectService }]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProjectUpdateMenuComponent);
@@ -36,21 +42,48 @@ describe('ProjectMenuComponent', () => {
     projectService = TestBed.inject(ProjectService);
   });
 
+  // Component should initialize
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display title "Project Menu"', () => {
-    //Assign DOM to variable
+  // Verify that the component displays the title
+  it('should display title "Project Update Menu"', () => {
     const compiled = fixture.nativeElement;
-    //Select HTML element
     const title = compiled.querySelector('h1');
-
-    //Check text content of h1 element
+    expect(title).toBeTruthy();
+    expect(title.textContent).toContain('Project Update Menu');
+  });
+  
+  // Initial rendering of template content
+  it('should show the correct title in rendered DOM', () => {
+    const compiled = fixture.nativeElement;
+    const title = compiled.querySelector('h1');
     expect(title).toBeTruthy();
     expect(title.textContent).toContain('Project Update Menu');
   });
 
+  it('should show no projects when projects list is empty', () => {
+    component.projects = [];
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('.project-page__no-projects')).toBeTruthy();
+  });
+
+  it('should show projects table if projects are present', () => {
+    component.projects = mockProjects;
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('.project-page__table')).toBeTruthy();
+  });
+
+  //Verify that no message is shown when serverMessage is null */
+  it('should not show server messages when there is no serverMessage', () => {
+    component.serverMessage = null;
+    component.serverMessageType = null;
+
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('.message-alert')).toBeNull();
+    expect(compiled.querySelector('.message-success')).toBeNull();
+  });
 });
-
-

@@ -81,6 +81,11 @@ router.post("/", async (req, res, next) => {
 router.patch("/:projectId", async (req, res, next) => {
   try {
     const project = await Project.findOne({ projectId: req.params.projectId });
+
+    if (!project) {
+      return next(createError(404, "Project not found"));
+    }
+
     const valid = validateUpdateProject(req.body);
     if (!valid) {
       console.log(req.body);
@@ -93,13 +98,14 @@ router.patch("/:projectId", async (req, res, next) => {
       description: req.body.description,
     });
     await project.save();
+
     res.send({
       message: "Project updated successfully",
       projectId: project.projectId,
     });
   } catch (err) {
-    console.error(`Error while updating project: ${err}`);
-    next(err);
+    console.error(`Error while updating project: ${err.message}`);
+    next(createError(500, "Internal Server Error"));
   }
 });
 

@@ -5,7 +5,7 @@
 //    Lean, Mean, and Pragmatic - A Guide to Full-Stack JavaScript Development
 //    Bernice Templeman
 
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -19,11 +19,14 @@ import { Project, UpdateProjectDTO } from '../project';
 
   template: `
     <div class="project-details-page">
+
       <h1 class="project-details-page__title">Project Update</h1>
+
       <h4 class="project-details-page__subtitle">
-        Explore the detailed information about your selected project, including
-        its location, plants, and maintenance schedule.
+        Explore the detailed information about your selected project, 
+        including its location, plants, and maintenance schedule.
       </h4>
+
       <div class="project-details-page__card">
         <form [formGroup]="projectForm" class="project-details-page__form">
           <div class="project-details-page__form-group">
@@ -35,10 +38,13 @@ import { Project, UpdateProjectDTO } from '../project';
             <label for="description" class="project-details-page__form-label">Project Description</label>
             <textarea id="description" rows="10" class="project-details-page__form-control" formControlName="description"></textarea>
           </div>
+
           <button type="submit" class="project-details-page__btn" (click)="onSubmit()">Save Changes</button>
         </form>
       </div>
+
       <br />
+
       <a class="project-details-page__link" routerLink="/projects">Return</a>
     </div>
   `,
@@ -115,36 +121,31 @@ import { Project, UpdateProjectDTO } from '../project';
 export class ProjectUpdateComponent {
   projectId: number;
   project: Project;
+
   projectForm: FormGroup = this.fb.group({
-    name: [
-      null,
-      Validators.compose([Validators.required, Validators.minLength(3)]),
-    ],
-    description: [
-      null,
-      Validators.compose([Validators.required, Validators.minLength(10)]),
-    ],
+    name: [ null, Validators.compose([Validators.required, Validators.minLength(3)])],
+    description: [ null, Validators.compose([Validators.required, Validators.minLength(10)])],
   });
-  constructor(
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private projectService: ProjectService
-  ) {
+
+  constructor( private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private projectService: ProjectService ) {
     let l_projectId = this.route.snapshot.paramMap.get('projectId') || '';
     this.projectId = parseInt(l_projectId, 10);
     this.project = {} as Project;
+
     console.log('Project ID', this.projectId);
+
     if (isNaN(this.projectId)) {
       this.router.navigate(['/projects']);
       return;
     }
+
     this.projectService.getProject(this.projectId).subscribe({
       next: (project: Project) => {
         if (!project) {
           this.router.navigate(['/projects']);
           return;
         }
+        
         this.project = project;
         console.log('Project Details', this.project);
       },
@@ -153,19 +154,20 @@ export class ProjectUpdateComponent {
       },
       complete: () => {
         this.projectForm.controls['name'].setValue(this.project.name);
-        this.projectForm.controls['description'].setValue(
-          this.project.description
-        );
-      },
+        this.projectForm.controls['description'].setValue(this.project.description);
+      }
     });
   }
+
   onSubmit() {
     if (this.projectForm.valid) {
       let l_project: UpdateProjectDTO = {
         name: this.projectForm.controls['name'].value,
         description: this.projectForm.controls['description'].value,
       };
+
       console.log('Updating Project', l_project);
+
       this.projectService.updateProject(l_project, this.projectId).subscribe({
         next: (result: any) => {
           console.log(`ProjectId: ${result.projectId} ${result.message}`);
@@ -173,7 +175,7 @@ export class ProjectUpdateComponent {
         },
         error: (error) => {
           console.error('Error updating project', error);
-        },
+        }
       });
     }
   }

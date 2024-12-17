@@ -47,8 +47,8 @@ import { HighlightRecentDirective } from '../highlight-recent.directive';
           <td class="project-page__table-cell">{{ project.projectId }}</td>
           <td class="project-page__table-cell">{{ project.name }}</td>
           <td class="project-page__table-cell">{{ project.description }}</td>
-          <td class="project-page__table-cell">{{ project.startDate }}</td>
-          <td class="project-page__table-cell">{{ project.endDate }}</td>
+          <td class="project-page__table-cell">{{ project.startDate | date : "shortDate" }}</td>
+          <td class="project-page__table-cell">{{ project.endDate | date : "shortDate" }}</td>
          </tr>
        }
      </tbody>

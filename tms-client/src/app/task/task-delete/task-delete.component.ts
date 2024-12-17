@@ -36,7 +36,7 @@ import { RouterLink } from '@angular/router';
             <td class="task-page__table-cell">{{ task.description }}</td>
             <td class="task-page__table-cell">{{ task.status }}</td>
             <td class="task-page__table-cell">{{ task.priority }}</td>
-            <td class="task-page__table-cell">{{ task.dueDate }}</td>
+            <td class="task-page__table-cell">{{ task.dueDate | date: 'shortDate' }}</td>
             <td class="task-page__table-cell">{{ task.projectId }}</td>
             <td class="task-page__table-cell task-page__cell--functions">
               <a (click)="deleteTask(task._id)" class="task-page__icon-link"

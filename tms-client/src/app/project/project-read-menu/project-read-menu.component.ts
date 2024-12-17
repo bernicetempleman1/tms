@@ -62,7 +62,7 @@ import { DatePipe } from '@angular/common';
             <td class="project-page__table-cell">{{ project.projectId }}</td>
             <td class="project-page__table-cell">{{ project.name }}</td>
             <td class="project-page__table-cell">{{ project.description }}</td>
-            <td class="project-page__table-cell">{{ project.dateCreated | date : 'short' }}</td>
+            <td class="project-page__table-cell">{{ project.dateCreated | date : 'shortDate' }}</td>
             <td
               class="project-page__table-cell project-page__table-cell--functions"
             >

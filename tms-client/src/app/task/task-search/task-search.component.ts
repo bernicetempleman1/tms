@@ -104,7 +104,7 @@ import { FormsModule } from '@angular/forms';
               <td class="task-page__table-cell">{{ task.status }}</td>
               <td class="task-page__table-cell">{{ task.priority }}</td>
               <td class="task-page__table-cell">
-                {{ task.dueDate | date : 'short' }}
+                {{ task.dueDate | date: 'shortDate' }}
               </td>
               <td class="task-page__table-cell">{{ task.projectId }}</td>
             </tr>
