@@ -275,14 +275,14 @@ export class AppComponent {
 
   // Array to hold reports links in the side menu. These links are visible to all users
   taskReports = [
-    { name: 'Tasks by Priority', url: '/reports/tasks/tasks-by-priority' },
+    { name: 'Task Report', url: '/reports/task/task-report' },
     // Add more reports as needed
   ];
 
   projectReports = [
     {
-      name: 'Projects by End Date',
-      url: '/reports/projects/projects-by-end-date',
+      name: 'Project Report',
+      url: '/reports/project/project-report',
     },
     // Add more reports as needed
   ];

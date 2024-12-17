@@ -47,4 +47,9 @@ export class TaskService {
   deleteTask(taskId: string) {
     return this.http.delete(`${environment.apiBaseUrl}/api/tasks/${taskId}`);
   }
+
+  getTaskPriorities() {
+    return this.http.get<Task[]>(`${environment.apiBaseUrl}/api/tasks/priorities`);
+
+  }
 }

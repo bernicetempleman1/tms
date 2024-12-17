@@ -30,6 +30,10 @@ import { TaskReadComponent } from './task/task-read/task-read.component';
 import { TaskListComponent } from './task/task-list/task-list.component';
 import { TaskSearchComponent } from './task/task-search/task-search.component';
 
+import { TaskReportComponent } from './report/task/task-report/task-report.component';
+import { ProjectReportComponent } from './report/project/project-report/project-report.component';
+
+
 export const routes: Routes = [
   {
     path: '',
@@ -111,5 +115,13 @@ export const routes: Routes = [
   {
     path: 'projects/search',
     component: ProjectSearchComponent,
+  },
+  {
+    path: 'reports/task/task-report',
+    component: TaskReportComponent,
+  },
+  {
+    path: 'reports/project/project-report',
+    component: ProjectReportComponent,
   },
 ];

@@ -46,4 +46,15 @@ describe('Read Project By Id API', () => {
     const response = await request(app).get('/api/proojects/badId');
     expect(response.status).toBe(404);
   });
+
+  it('should successfully delete a project', async () => {
+    //Mock the deleteOne method
+    Project.deleteOne.mockResolvedValue({ deletedCount: 1 });
+
+    //Make request to API
+    const response = await request(app).delete('/api/projects/1');
+
+    //Expected response
+    expect(response.status).toBe(200);
+  });
 });

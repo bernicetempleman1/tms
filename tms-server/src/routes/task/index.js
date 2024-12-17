@@ -105,4 +105,22 @@ router.delete('/:taskId', async (req, res, next) => {
   }
 });
 
+router.get("/priority", async (req, res, next) => {
+  try {
+    const { priority } = req.query;
+
+    if (!priority) {
+      return next(createError(400, "priority is required"));
+    }
+
+    const tasks = await Task.distinct('priority');
+    res.send(tasks);
+  } catch (err) {
+      console.error(`Error while getting tasks: ${err}`);
+      next(err);
+  }
+});
+
+
+
 module.exports = router;
