@@ -22,6 +22,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
         </div>
 
         <a class="app__side-menu-link" routerLink="/">Home</a>
+        <a class="app__side-menu-link" routerLink="/dashboard">Dashboard</a>
 
         <div
           class="app__side-menu-section"

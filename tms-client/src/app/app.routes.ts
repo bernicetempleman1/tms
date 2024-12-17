@@ -35,6 +35,7 @@ import { ProjectReportComponent } from './report/project/project-report/project-
 
 import { SupportComponent } from './support/support.component';4
 import { FaqComponent } from './faq/faq.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 export const routes: Routes = [
@@ -135,4 +136,9 @@ export const routes: Routes = [
     path: 'faq',
     component: FaqComponent,
   },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+  },
 ];
+
