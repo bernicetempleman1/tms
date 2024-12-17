@@ -21,8 +21,8 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
           <h2 class="app__side-menu-title">{{ title }}</h2>
         </div>
 
-        <a class="app__side-menu-link" routerLink="/">Home</a>
-        <a class="app__side-menu-link" routerLink="/dashboard">Dashboard</a>
+        <a class="app__side-menu-link" routerLink="/">Dashboard</a>
+
 
         <div
           class="app__side-menu-section"
@@ -102,6 +102,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
         <a class="app__side-menu-link" routerLink="/support">Support</a>
         <a class="app__side-menu-link" routerLink="/faq">FAQ</a>
+        <a class="app__side-menu-link" routerLink="/home">Home</a>
       </nav>
 
       <div class="app__main-content">
