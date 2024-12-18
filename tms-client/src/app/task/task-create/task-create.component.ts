@@ -66,7 +66,7 @@ import { HttpClient } from '@angular/common/http';
               id="description"
               class="task-add-page__form-control"
               formControlName="description"
-              placeholder="Enter a description of the project: 3+ characters"
+              placeholder="Enter a description of the task: 3+ characters"
               required
             />
           </div>
