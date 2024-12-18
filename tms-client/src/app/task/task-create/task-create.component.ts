@@ -41,7 +41,7 @@ import { HttpClient } from '@angular/common/http';
             <label
               for="title"
               class="task-add-page__form-label"
-              title="Must be 3 or more characters"
+              title="Must be 3 or more characters and unique."
               >Task Title<span class="required">*</span></label
             >
             <input
@@ -50,7 +50,7 @@ import { HttpClient } from '@angular/common/http';
               class="task-add-page__form-control"
               formControlName="title"
               required
-              placeholder="Enter the title of the task: 3+ characters"
+              placeholder="Enter the title of the task: must be unique and have 3+ characters"
             />
           </div>
 
