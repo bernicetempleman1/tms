@@ -45,7 +45,7 @@ import { DatePipe } from '@angular/common';
             @for (data of projectData; track data) {
             <tr>
               <td>{{ data.name }}</td>
-              <td>{{ data.startDate }}</td>
+              <td>{{ data.startDate  | date : 'short'}}</td>
               <td>{{ data.endDate | date : 'short' }}</td>
             </tr>
             }
