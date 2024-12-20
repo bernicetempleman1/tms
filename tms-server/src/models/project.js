@@ -62,7 +62,7 @@ projectSchema.path("name").validate(function (val) {
 // If the document is new, increment the gardenId
 // If the document is not new, update the dateModified
 projectSchema.pre("validate", async function (next) {
-  if (this.startDate <= this.endDate) {
+  if (this.startDate < this.endDate) {
     let doc = this;
     if (this.isNew) {
       try {
